@@ -1,0 +1,26 @@
+{
+    "files.associations": {
+        "queue": "cpp",
+        "cstdlib": "cpp",
+        "iostream": "cpp",
+        "type_traits": "cpp",
+        "cstdio": "cpp",
+        "cmath": "cpp",
+        "bitset": "cpp",
+        "valarray": "cpp",
+        "ostream": "cpp",
+        "random": "cpp",
+        "chrono": "cpp",
+        "limits": "cpp",
+        "fstream": "cpp",
+        "future": "cpp",
+        "thread": "cpp"
+    },
+    "files.insertFinalNewline": true,
+    "code-runner.saveFileBeforeRun": true,
+    //"editor.formatOnType": true,
+    //"editor.formatOnSave": true,
+    "fileheader.Author": "F_CIL",
+    "fileheader.LastModifiedBy": "F_CIL",
+    "python.pythonPath": "D:\\Anaconda\\envs\\sense\\python.exe"
+}
