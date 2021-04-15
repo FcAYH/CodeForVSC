@@ -1,83 +1,36 @@
-#include <iostream>
+#include <bits/stdc++.h>
 
 using namespace std;
 
-int f(int x)
+class A
 {
+    int x, y;
+    ~A(){};
 
-    switch (x)
+public:
+    A(A &a)
     {
-
-    case 0:
-        throw 1.2;
-        break;
-
-    case 1:
-        throw 5;
-        break;
-
-    case 2:
-        throw 7;
-        break;
-
-    case 3:
-        throw 3.0f;
-        break;
-
-    case 4:
-        throw 4L;
-        break;
-
-    default:
-        throw "error";
+        x = a.x, y = a.y;
     }
-}
+    A(int a = 0, int b = 0)
+    {
+        x = a, y = b;
+    }
+    void destroy(int i)
+    {
+        if (i)
+            delete[] this;
+        else
+            delete this;
+    }
+    int get_x() { return x; }
+    int get_y() { return y; }
+};
 
 int main()
 {
+    //    A *p = new A[10];
+    A *p = new A;
 
-    int k;
-
-    while (1)
-    {
-
-        try
-        {
-
-            cin >> k;
-
-            f(k);
-
-            cout << "gohere!";
-        }
-
-        catch (double)
-        {
-            cout << "A" << endl;
-        }
-
-        catch (int e)
-        {
-            if (e == 5)
-                cout << "B1" << endl;
-            if (e == 7)
-                cout << "B2" << endl;
-        }
-
-        catch (float)
-        {
-            cout << "C" << endl;
-        }
-
-        catch (long)
-        {
-            cout << "D" << endl;
-        }
-
-        catch (...)
-        {
-            cout << "E" << endl;
-            return 0;
-        }
-    }
+    return 0;
 }

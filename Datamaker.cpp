@@ -1,18 +1,46 @@
-#include <cstdio>
-#include <iostream>
-#include <cstring>
-#include <ctime>
-#include <cstdlib>
+#include <bits/stdc++.h>
+
 using namespace std;
+
+int A[100000];
 int main()
 {
-    freopen("10.in", "w", stdout);
+    freopen("1.in", "w", stdout);
+
     srand(time(0));
-    int n = 50000;
-    printf("%d\n", n);
-    for (int i = 1; i <= n; i++)
+
+    // int m = 21000;
+    // printf("%d\n", m);
+    // while (m--)
+    // {
+    //     int n1 = rand() % 100, n2 = rand() % 100;
+
+    //     printf("%d %d\n", n1, n2);
+
+    //     for (int i = 1; i <= n1; i++)
+    //         printf("%d ", rand() % 300);
+
+    //     puts("");
+    //     for (int i = 1; i <= n2; i++)
+    //         printf("%d ", rand() % 300);
+    //     puts("");
+    // }
+
+    int m = 10000;
+    printf("%d\n", m);
+    while (m--)
     {
-        printf("%d\n", rand() % 100000);
+        int n1 = 100, n2 = 100;
+
+        printf("%d %d\n", n1, n2);
+
+        for (int i = 1; i <= n1; i++)
+            printf("%d ", rand() % 300);
+
+        puts("");
+        for (int i = 1; i <= n2; i++)
+            printf("%d ", rand() % 300);
+        puts("");
     }
     return 0;
 }
