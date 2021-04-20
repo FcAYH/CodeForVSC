@@ -1,0 +1,16 @@
+D:\MyDocuments\MYCODE\CodeForVSC\bin\Debug\net5.0\CodeforVSC.exe
+D:\MyDocuments\MYCODE\CodeForVSC\bin\Debug\net5.0\CodeforVSC.deps.json
+D:\MyDocuments\MYCODE\CodeForVSC\bin\Debug\net5.0\CodeforVSC.runtimeconfig.json
+D:\MyDocuments\MYCODE\CodeForVSC\bin\Debug\net5.0\CodeforVSC.runtimeconfig.dev.json
+D:\MyDocuments\MYCODE\CodeForVSC\bin\Debug\net5.0\CodeforVSC.dll
+D:\MyDocuments\MYCODE\CodeForVSC\bin\Debug\net5.0\ref\CodeforVSC.dll
+D:\MyDocuments\MYCODE\CodeForVSC\bin\Debug\net5.0\CodeforVSC.pdb
+D:\MyDocuments\MYCODE\CodeForVSC\obj\Debug\net5.0\CodeforVSC.csprojAssemblyReference.cache
+D:\MyDocuments\MYCODE\CodeForVSC\obj\Debug\net5.0\CodeforVSC.GeneratedMSBuildEditorConfig.editorconfig
+D:\MyDocuments\MYCODE\CodeForVSC\obj\Debug\net5.0\CodeforVSC.AssemblyInfoInputs.cache
+D:\MyDocuments\MYCODE\CodeForVSC\obj\Debug\net5.0\CodeforVSC.AssemblyInfo.cs
+D:\MyDocuments\MYCODE\CodeForVSC\obj\Debug\net5.0\CodeforVSC.csproj.CoreCompileInputs.cache
+D:\MyDocuments\MYCODE\CodeForVSC\obj\Debug\net5.0\CodeforVSC.dll
+D:\MyDocuments\MYCODE\CodeForVSC\obj\Debug\net5.0\ref\CodeforVSC.dll
+D:\MyDocuments\MYCODE\CodeForVSC\obj\Debug\net5.0\CodeforVSC.pdb
+D:\MyDocuments\MYCODE\CodeForVSC\obj\Debug\net5.0\CodeforVSC.genruntimeconfig.cache

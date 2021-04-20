@@ -17,7 +17,7 @@ void Solve()
 
     bool flag = (!(Year % 4) && (Year % 100)) || (!(Year % 400));
 
-    if (Day > M[flag][Month] || (Year < 2001) || (Year == 2001 && Month == 1 && Day < 22))
+    if (Month > 12 || Day > M[flag][Month] || (Year < 2001) || (Year == 2001 && Month == 1 && Day < 22))
     {
         printf("Invalid");
         return;
@@ -34,7 +34,7 @@ void Solve()
             {
                 timelong += 9;
                 for (int i = startMonth + 1; i < Month; i++)
-                    timelong += M[flag][Month];
+                    timelong += M[flag][i];
                 timelong += Day;
             }
         }
