@@ -83,9 +83,10 @@ int main()
     Solution S;
 
     int target = read_data();
-
-    cout << S.searchMatrix(Map, target) << endl;
-    cout << l + 1 << " " << r + 1 << endl;
+    if (S.searchMatrix(Map, target))
+        cout << "true" << endl;
+    else
+        cout << "false" << endl;
     return 0;
 }
 /*
@@ -93,5 +94,6 @@ int main()
 1 2 3
 4 5 6
 7 8 9
-5
+10
+
 */
