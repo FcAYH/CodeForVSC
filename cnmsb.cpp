@@ -63,20 +63,20 @@ public:
     }
 
 public:
-    void set_Element();
+    void set_Element(int x);
     void sort();                   // sort the Matrix form upper_left to button_right
     bool Bruteforce_search(int x); //force_search x from the Matrix
     bool Binary_search1(int x);    //binary_search x from the Matrix,row by row
-    bool Binary_search2(int x);
-    void build2D_up(int **matrix, int index, int width, int length);
-    void build2D_down(int **matrix, int index, int width, int length); //binary_search x from the Matrix, one -> four
+    //bool Binary_search2(int x);  //binary_search x from the Matrix, one -> four
+    //void build2D_up(int **matrix, int index, int width, int length);
+    //void build2D_down(int **matrix, int index, int width, int length);
 };
 
-void Matrix::set_Element()
+void Matrix::set_Element(int x)
 {
-    printf("Please input the row and column of the Matrix:\n");
+    //printf("Please input the row and column of the Matrix:\n");
 
-    scanf("%d%d", &this->row, &this->col);
+    this->row = x, this->col = x;
 
     if (this->G != nullptr)
         delete[] G;
@@ -85,10 +85,11 @@ void Matrix::set_Element()
     for (int i = 0; i <= this->row; i++)
         this->G[i] = new int[this->col + 1];
 
-    printf("Please input the element of the Matrix");
+    //printf("Please input the element of the Matrix");
+    int cnt = 1;
     for (int i = 1; i <= this->row; i++)
         for (int j = 1; j <= this->col; j++)
-            scanf("%d", &this->G[i][j]);
+            this->G[i][j] = cnt++;
 }
 void Matrix::sort()
 {
@@ -137,68 +138,81 @@ bool Matrix::Binary_search1(int x)
     }
 }
 
-void Matrix::build2D_up(int **matrix, int index, int width, int length)
-{
-    this->row = width, this->col = length;
-    this->G = new int *[this->row + 1];
-    for (int i = 0; i <= this->row; i++)
-        this->G[i] = new int[this->col + 1];
+// void Matrix::build2D_up(int **matrix, int index, int width, int length)
+// {
+//     this->row = width, this->col = length;
+//     this->G = new int *[this->row + 1];
+//     for (int i = 0; i <= this->row; i++)
+//         this->G[i] = new int[this->col + 1];
 
-    for (int i = 1; i < index; i++)
-    {
-        for (int j = index; j < length; j++)
-        {
-            this->G[i][j - index] = matrix[i][j];
-        }
-    }
-}
+//     for (int i = 1; i < index; i++)
+//     {
+//         for (int j = index; j < length; j++)
+//         {
+//             this->G[i][j - index] = matrix[i][j];
+//         }
+//     }
+// }
 
-void Matrix::build2D_down(int **matrix, int index, int width, int length)
-{
-    this->row = width, this->col = length;
-    this->G = new int *[this->row + 1];
-    for (int i = 0; i <= this->row; i++)
-        this->G[i] = new int[this->col + 1];
+// void Matrix::build2D_down(int **matrix, int index, int width, int length)
+// {
+//     this->row = width, this->col = length;
+//     this->G = new int *[this->row + 1];
+//     for (int i = 0; i <= this->row; i++)
+//         this->G[i] = new int[this->col + 1];
 
-    for (int i = index; i <= width; i++)
-    {
-        for (int j = 1; j <= index; j++)
-        {
-            this->G[i - index][j] = matrix[i][j];
-        }
-    }
-}
-bool Matrix::Binary_search2(int x)
-{
-    int i = 0;
-    for (i = 1; i <= min(this->row, this->col); i++)
-    {
-        if (this->G[i][i] == x)
-            return true;
+//     for (int i = index; i <= width; i++)
+//     {
+//         for (int j = 1; j <= index; j++)
+//         {
+//             this->G[i - index][j] = matrix[i][j];
+//         }
+//     }
+// }
+// bool Matrix::Binary_search2(int x)
+// {
+//     int i = 0;
+//     for (i = 1; i <= min(this->row, this->col); i++)
+//     {
+//         if (this->G[i][i] == x)
+//             return true;
 
-        if (this->G[i][i] > x)
-            break;
-    }
-    Matrix matrix1, matrix2;
-    matrix1.build2D_up(this->G, i, this->row, this->col);
-    matrix2.build2D_down(this->G, i, this->row, this->col);
-    return (matrix1.Binary_search2(x) || matrix2.Binary_search2(x));
-}
+//         if (this->G[i][i] > x)
+//             break;
+//     }
+//     Matrix matrix1, matrix2;
+//     matrix1.build2D_up(this->G, i, this->row, this->col);
+//     matrix2.build2D_down(this->G, i, this->row, this->col);
+//     return (matrix1.Binary_search2(x) || matrix2.Binary_search2(x));
+// }
 
 void Solve()
 {
-    Matrix M;
-    M.set_Element();
+    freopen("output2.txt", "w", stdout);
 
-    int toFind;
-    scanf("%d", &toFind);
+    for (int i = 10; i <= 1000; i + 10)
+    {
+        Matrix M;
+        M.set_Element(i);
 
-    if (M.Bruteforce_search(toFind))
-        puts("True");
-    if (M.Binary_search1(toFind))
-        puts("True");
-    if (M.Binary_search2(toFind))
-        puts("True");
+        int toFind = rand() % i + 1;
+        //scanf("%d", &toFind);
+
+        clock_t start1 = clock();
+        M.Bruteforce_search(toFind);
+        clock_t end1 = clock();
+        clock_t start2 = clock();
+        M.Binary_search1(toFind);
+        clock_t end2 = clock();
+
+        cout << end1 - start1 << " " << end2 - start2 << endl;
+        // if (M.Bruteforce_search(toFind))
+        //     puts("True");
+        // if (M.Binary_search1(toFind))
+        //     puts("True");
+        // if (M.Binary_search2(toFind))
+        //     puts("True");
+    }
     // Point Ans;
     // Ans = M.Bruteforce_search(toFind);
     // printf("After Bruteforce_search, We find the number at ");

@@ -2,7 +2,7 @@
 
 using namespace std;
 
-int l, r;
+int l, r, m, n;
 vector<vector<int>> Map;
 vector<int> tmp;
 
@@ -59,34 +59,42 @@ public:
     }
 };
 
-int read_data()
+int read_data(int x)
 {
-    int tar, n, m;
-    scanf("%d%d", &n, &m);
+    n = x, m = x;
+    int cnt = 1;
     for (int i = 0; i < n; i++)
     {
         tmp.clear();
         for (int j = 0; j < m; j++)
         {
             int t;
-            scanf("%d", &t);
+            t = cnt++;
             tmp.push_back(t);
         }
         Map.push_back(tmp);
     }
-    scanf("%d", &tar);
+    int tar = cnt / 2;
     return tar;
 }
 
 int main()
 {
-    Solution S;
+    freopen("output.txt", "w", stdout);
+    for (int i = 10; i <= 1000; i += 10)
+    {
+        Solution S;
 
-    int target = read_data();
-    if (S.searchMatrix(Map, target))
-        cout << "true" << endl;
-    else
-        cout << "false" << endl;
+        int target = read_data(i);
+        clock_t start = clock();
+        S.searchMatrix(Map, target);
+        // if (S.searchMatrix(Map, target))
+        //     cout << "true" << endl;
+        // else
+        //     cout << "false" << endl;
+        clock_t end = clock();
+        cout << end - start << endl;
+    }
     return 0;
 }
 /*

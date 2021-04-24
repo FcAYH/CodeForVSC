@@ -2,45 +2,30 @@
 
 using namespace std;
 
-int A[100000];
+const int Maxn = 1010;
+
+//vector<vector<int>> Map;
+
 int main()
 {
-    freopen("1.in", "w", stdout);
+    freopen("1.out", "w", stdout);
+    for (int i = 100; i <= 10000; i += 100)
+        printf("%d\n", i * 100 * 1000 / 10000000 + rand() % 5 + i / 30);
+    // freopen("1.in", "w", stdout);
 
-    srand(time(0));
+    // srand(time(0));
 
-    // int m = 21000;
-    // printf("%d\n", m);
-    // while (m--)
+    // int n = 1000, m = 1000;
+    // printf("%d %d\n", n, m);
+
+    // int cnt = 1;
+    // for (int i = 1; i <= 1000; i++)
     // {
-    //     int n1 = rand() % 100, n2 = rand() % 100;
-
-    //     printf("%d %d\n", n1, n2);
-
-    //     for (int i = 1; i <= n1; i++)
-    //         printf("%d ", rand() % 300);
-
-    //     puts("");
-    //     for (int i = 1; i <= n2; i++)
-    //         printf("%d ", rand() % 300);
+    //     for (int j = 1; j <= 1000; j++)
+    //         printf("%d ", cnt++);
     //     puts("");
     // }
+    // printf("%d\n", cnt - 1001);
 
-    int m = 10000;
-    printf("%d\n", m);
-    while (m--)
-    {
-        int n1 = 100, n2 = 100;
-
-        printf("%d %d\n", n1, n2);
-
-        for (int i = 1; i <= n1; i++)
-            printf("%d ", rand() % 300);
-
-        puts("");
-        for (int i = 1; i <= n2; i++)
-            printf("%d ", rand() % 300);
-        puts("");
-    }
     return 0;
 }

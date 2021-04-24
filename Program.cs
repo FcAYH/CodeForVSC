@@ -4,9 +4,12 @@ namespace CodeForVSC
 {
     class Program
     {
-        static void Main(string[] args)
+
+        public static void Calc()
         {
-            Console.WriteLine("Hello World!");
+            string[] s = Console.ReadLine().Split(' ');
+            Console.WriteLine(s[0] + ' ' + s[1]);
+            Console.ReadKey();
         }
     }
 }
