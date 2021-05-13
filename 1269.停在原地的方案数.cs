@@ -26,7 +26,7 @@ public class Solution
                 A[i, j] += A[i, j - 1];
                 for (int k = 1; k * (arrLen - 1) <= steps; k++)
                 {
-                    A[i, j] += 8
+                    A[i, j] += 8;
                 }
             }
         }
