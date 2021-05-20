@@ -31,8 +31,8 @@ public:
 
 void Solve()
 {
-    freopen("10.in", "r", stdin);
-    freopen("10.out", "w", stdout);
+    // freopen("10.in", "r", stdin);
+    // freopen("10.out", "w", stdout);
 
     int n;
     scanf("%d", &n);
@@ -44,6 +44,38 @@ void Solve()
         scanf("%d", &x);
         arr.push_back(x);
     }
+
+    int length = arr.size();
+    printf("%d ", length);
+    for (int i = 1; i < length; i++)
+        arr[i] ^= arr[i - 1];
+
+    int Ans = 0;
+
+    {
+        int i = 0;
+        for (int k = i + 1; k < length; k++)
+            for (int j = i + 1; j <= k; j++)
+                if (arr[j - 1] == (arr[k] ^ arr[j - 1]))
+                    Ans++, printf("(%d, %d, %d)\n", i, j, k);
+    }
+    printf("ss");
+    for (int i = 1; i < length - 1; i++)
+    {
+        for (int k = i + 1; k < length; k++)
+        {
+            for (int j = i + 1; j <= k; j++)
+            {
+                if ((arr[j - 1] ^ arr[i - 1]) == (arr[k] ^ arr[j - 1]))
+                {
+                    printf("ssdfs");
+                    Ans++;
+                }
+            }
+        }
+    }
+
+    printf("%d\n", Ans);
 
     Solution solve;
     printf("%d", solve.countTriplets(arr));
