@@ -8,13 +8,13 @@ const int Maxn = 1010;
 
 int main()
 {
-    freopen("10.in", "w", stdout);
+    freopen("4.in", "w", stdout);
 
     srand(time(0));
     int n = 100000;
     printf("%d\n", n);
     for (int i = 1; i <= n; i++)
-        printf("%d ", rand() % 100000 + 1);
+        printf("%d ", rand() % (rand() % 10 + 1) + rand() % 10 + 7992);
 
     // for (int i = 100; i <= 10000; i += 100)
     //     printf("%d\n", i * 100 * 1000 / 10000000 + rand() % 5 + i / 30);
