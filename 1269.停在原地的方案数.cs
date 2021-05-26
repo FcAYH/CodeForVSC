@@ -7,31 +7,31 @@
 // @lc code=start
 public class Solution
 {
-    const long Mod = 1000000007;
+    const int Mod = 1000000007;
     public int NumWays(int steps, int arrLen)
     {
-        arrLen = Math.Min(steps >> 1, arrLen - 1);
-        long[,] A = new long[steps + 1, arrLen + 1];
+        arrLen = Math.Min(arrLen, steps / 2 + 1);
+        int[,] A = new int[2, arrLen + 1];
 
-        for (int i = 0; i <= arrLen; i++)
-            A[1, i] = 1;
-
+        int flag = 0;
+        A[0, 0] = 1;
         for (int i = 1; i <= steps; i++)
-            A[i, 0] = 1;
-
-        for (int i = 2; i <= steps; i++)
         {
-            for (int j = 1; j <= arrLen; j++)
+            for (int j = 0; j < arrLen; j++)
             {
-                A[i, j] += A[i, j - 1];
-                for (int k = 1; k * (arrLen - 1) <= steps; k++)
-                {
-                    A[i, j] += 8;
-                }
+                if (j == 0)
+                    A[flag ^ 1, j] = (A[flag, 1] + A[flag, 0]);
+                else if (j == arrLen - 1)
+                    A[flag ^ 1, j] = (A[flag, j - 1] + A[flag, j]);
+                else
+                    A[flag ^ 1, j] = (((A[flag, j - 1] + A[flag, j + 1]) % Mod) + A[flag, j]);
+
+                A[flag ^ 1, j] %= Mod;
             }
+            flag ^= 1;
         }
 
-        return A[steps, arrLen];
+        return A[flag, 0];
     }
 }
 // @lc code=end
