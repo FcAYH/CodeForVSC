@@ -8,13 +8,23 @@ const int Maxn = 1010;
 
 int main()
 {
-    freopen("4.in", "w", stdout);
+    freopen("Aldata.out", "w", stdout);
 
-    srand(time(0));
-    int n = 100000;
+    int n = 11;
     printf("%d\n", n);
-    for (int i = 1; i <= n; i++)
-        printf("%d ", rand() % (rand() % 10 + 1) + rand() % 10 + 7992);
+    for (int i = 1; i <= n * (n - 1); i++)
+        printf("%d ", rand() % 500 + 1);
+
+    // for (int i = 0; i <= 11; i++)
+    // {
+    //     for (int j = 0; j <= 11; j++)
+    //     {
+    //         if (i == 11 - j)
+    //             printf("[%d, %d, %d],\n", i, j, 15);
+    //         else
+    //             printf("[%d, %d, %d],\n", i, j, 0);
+    //     }
+    // }
 
     // for (int i = 100; i <= 10000; i += 100)
     //     printf("%d\n", i * 100 * 1000 / 10000000 + rand() % 5 + i / 30);
