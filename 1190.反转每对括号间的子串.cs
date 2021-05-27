@@ -9,25 +9,27 @@ public class Solution
 {
     public string ReverseParentheses(string s)
     {
-        char[] temp = new char[s.Length](s.ToCharArray());
+        char[] temp = new char[s.Length];
+        temp = s.ToCharArray();
+
+        int[] pos = new int[s.Length];
+
         for (int i = 0; i < s.Length; i++)
         {
             if (temp[i] == '(')
-            {
-                int tp = i;
-                Stack<char> S = new Stack<char>();
-                while (temp[tp] != ')')
-                    S.Add(temp[tp++]);
+                pos[i] = i;
+            else
+                pos[i] = (i == 0) ? 0 : pos[i - 1];
 
-                tp = i;
-                while (S.Count != 0)
-                {
-                    temp[tp] = S.Pop();
-                    if (temp[tp] == '(') temp[tp] = ')';
-                    else if (temp[tp] == ')') temp[tp] = '(';
-                }
-            }
+            if (i != 0 && temp[i - 1] == ')')
+                pos[i] = (pos[i - 1] - 1 == 0) ? 0 : pos[pos[i - 1] - 1];
         }
+
+        for (int i = 0; i < s.Length; i++)
+            Console.Write("{0} ", pos[i]);
+
+        string S = "";
+        return S;
     }
 }
 // @lc code=end
