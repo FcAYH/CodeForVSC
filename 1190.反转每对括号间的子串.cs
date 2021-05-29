@@ -34,3 +34,7 @@ public class Solution
 }
 // @lc code=end
 
+/*
+a ( u ( l o v e ) i ) b  (  c  s  s  (  g  h  )  ) s"
+0 1 1 3 3 3 3 3 3 1 1 0 12 12 12 12 16 16 16 16 12 0 
+*/
