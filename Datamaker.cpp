@@ -17,15 +17,20 @@ int main()
 
     freopen("data.out", "w", stdout);
 
-    for (int i = 0; i <= 11; i++)
+    // for (int i = 0; i <= 11; i++)
+    // {
+    //     for (int j = 0; j <= 11; j++)
+    //     {
+    //         if (i == 11 - j)
+    //             printf("[%d, %d, %d],\n", i, j, 150);
+    //         else
+    //             printf("[%d, %d, %d],\n", i, j, 0);
+    //     }
+    // }
+
+    for (int i = 0; i <= 30; i++)
     {
-        for (int j = 0; j <= 11; j++)
-        {
-            if (i == 11 - j)
-                printf("[%d, %d, %d],\n", i, j, 150);
-            else
-                printf("[%d, %d, %d],\n", i, j, 0);
-        }
+        printf("(n == %d) ||", (1 << i));
     }
 
     // for (int i = 100; i <= 10000; i += 100)
