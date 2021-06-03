@@ -14,7 +14,10 @@
         "limits": "cpp",
         "fstream": "cpp",
         "future": "cpp",
-        "thread": "cpp"
+        "thread": "cpp",
+        "array": "cpp",
+        "string": "cpp",
+        "string_view": "cpp"
     },
     "files.insertFinalNewline": true,
     "code-runner.saveFileBeforeRun": true,
