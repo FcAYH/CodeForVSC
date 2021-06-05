@@ -1,9 +1,3 @@
-
-//input.txt
-//10 2
-//56 12 1 99 1000 234 33 55 99 812
-//output.txt
-//336
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -32,9 +26,9 @@ double ServiceArrange::Arrangment()
 
     for (int i = 0; i < n; i++)
     {
-        int temp = i % s;         //第i的任务由第i%s处处理
-        st[temp] += consumers[i]; //在第j处处理的任务运行时间之和
-        su[temp] += st[temp];     //在第j处处理的任务等待时间之和
+        int temp = i % s;
+        st[temp] += consumers[i];
+        su[temp] += st[temp];
     }
 
     double temp = 0;
