@@ -111,7 +111,7 @@ char *randstr(const int len)
 {
     char *str = new char[len + 1];
     int i;
-    for (i = 0; i < len; ++i)
+    for (i = 0; i < len - 1; ++i)
     {
         switch ((rand() % 3))
         {
@@ -144,6 +144,7 @@ int main()
         Student *student = new Student(N, randstr(7));
         v1.push_back(*student);
         v2.push_back(*student); //rand 65000
+        delete student;
     }
     // showData(v1);
 
