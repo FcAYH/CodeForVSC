@@ -26,54 +26,6 @@ HeapNode heap[100];
 int heapLength = 0;
 int level = 0;
 
-int main()
-{
-    int C[N][N], upbound = 0;
-    for (int i = 0; i < N; i++)
-    {
-        C[i][i] = BIGNUM;
-        for (int j = i + 1; j < N; j++)
-        {
-            scanf("%d", &C[i][j]);
-            C[j][i] = C[i][j];
-        }
-    }
-
-    int k = N - 1;
-    int i = 0;
-    int max = BIGNUM;
-    int visited[N];
-    int row;
-
-    for (int j = 0; j < N; j++)
-        visited[j] = 0;
-
-    while (k)
-    {
-        for (int j = 0; j < N; j++)
-        {
-            if (j == i | visited[j])
-                continue;
-            if (C[i][j] < max)
-            {
-                max = C[i][j];
-                row = j;
-            }
-        }
-
-        upbound += max;
-        visited[i] = 1;
-        i = row;
-        k--;
-        max = BIGNUM;
-    }
-    upbound += C[row][0];
-
-    Tsp(C, upbound);
-
-    return 0;
-}
-
 void InsertHeap(HeapNode b[], HeapNode x, int &length)
 {
     int i;
@@ -96,7 +48,7 @@ void DeleteHeap(HeapNode b[], int &length)
     HeapNode temp = b[1];
     b[length].bound = BIGNUM;
 
-    for (int i = 2; i < length; i *= 2)
+    for (i = 2; i < length; i *= 2)
     {
         if (b[i].bound > b[i + 1].bound)
             i++;
@@ -127,8 +79,7 @@ int RowMinExcept(int C[N][N], int row, int col)
 int SiSum(int C[N][N], HeapNode temp)
 {
     int level = temp.level;
-    int sum = RowMinExcept(C, temp.route[0] - 1, temp.route[1] - 1) +
-              RowMinExcept(C, temp.route[level] - 1, temp.route[level - 1] - 1);
+    int sum = RowMinExcept(C, temp.route[0] - 1, temp.route[1] - 1) + RowMinExcept(C, temp.route[level] - 1, temp.route[level - 1] - 1);
 
     return sum;
 }
@@ -200,7 +151,7 @@ void Tsp(int C[N][N], int pbound)
         {
             for (int i = 0; i <= N; i++)
             {
-                printf("%d", temp.route[i]);
+                printf("%d ", temp.route[i]);
             }
             printf("\n%d", temp.v);
             return;
@@ -256,3 +207,55 @@ void Tsp(int C[N][N], int pbound)
         }
     }
 }
+
+int main()
+{
+    int C[N][N], upbound = 0;
+    for (int i = 0; i < N; i++)
+    {
+        C[i][i] = BIGNUM;
+        for (int j = i + 1; j < N; j++)
+        {
+            scanf("%d", &C[i][j]);
+            C[j][i] = C[i][j];
+        }
+    }
+
+    int k = N - 1;
+    int i = 0;
+    int max = BIGNUM;
+    int visited[N];
+    int row;
+
+    for (int j = 0; j < N; j++)
+        visited[j] = 0;
+
+    while (k)
+    {
+        for (int j = 0; j < N; j++)
+        {
+            if (j == i | visited[j])
+                continue;
+            if (C[i][j] < max)
+            {
+                max = C[i][j];
+                row = j;
+            }
+        }
+
+        upbound += max;
+        visited[i] = 1;
+        i = row;
+        k--;
+        max = BIGNUM;
+    }
+    upbound += C[row][0];
+
+    Tsp(C, upbound);
+
+    return 0;
+}
+
+/*
+4 8 6 5 3 2 10 8 7 3
+*/
