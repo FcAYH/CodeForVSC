@@ -50,13 +50,15 @@ public:
     }
     bool operator>(const Student &t)
     {
-        int temp = strcmp(this->sName, t.sName);
-        return (temp == 0) ? this->nId > t.nId : (temp > 0);
+        // int temp = strcmp(this->sName, t.sName);
+        // return (temp == 0) ? this->nId > t.nId : (temp > 0);
+        return this->nId > t.nId;
     }
     bool operator<(const Student &t)
     {
-        int temp = strcmp(this->sName, t.sName);
-        return (temp == 0) ? this->nId < t.nId : (temp < 0);
+        // int temp = strcmp(this->sName, t.sName);
+        // return (temp == 0) ? this->nId < t.nId : (temp < 0);
+        return this->nId < t.nId;
     }
 
 public:
@@ -69,6 +71,8 @@ void MySort(vector<T> &v)
 {
     for (int i = 0; i < v.size() - 1; i++)
     {
+        if (i % 1000 == 0)
+            printf("work on : %d\n", i);
         for (int j = i + 1; j < v.size(); j++)
         {
             if (v[i] < v[j])
@@ -133,27 +137,28 @@ char *randstr(const int len)
 int main()
 {
     vector<Student> v1, v2; //模板类
-    int nNum = 1000;
+    int nNum = 100000;
     int N;
     unsigned t1, t2;
-
+    printf("sss");
     srand(GetTickCount()); //设置 随机种子 时钟滴答数
     for (int i = 0; i < nNum; i++)
     {
+        if (i % 1000 == 0)
+            printf("%d\n", i);
         N = (rand() * rand()) % 1000000; //产生百万以内的随机数
-        Student *student = new Student(N, randstr(7));
-        v1.push_back(*student);
-        v2.push_back(*student); //rand 65000
-        delete student;
+        Student student(N, randstr(5));
+        v1.push_back(student);
+        v2.push_back(student); //rand 65000
     }
     // showData(v1);
 
-    t1 = GetTickCount();
-    MySort(v1);
-    t2 = GetTickCount();
+    // t1 = GetTickCount();
+    // MySort(v1);
+    // t2 = GetTickCount();
 
-    cout << "\nMySort排序用时" << t2 - t1 << "ms" << endl;
-    ShowData(v1);
+    // cout << "\nMySort排序用时" << t2 - t1 << "ms" << endl;
+    // ShowData(v1);
     //下面是使用算法库的排序
     t1 = GetTickCount();
     sort(v2.begin(), v2.end(), cmp); //注意其中使用了函数对象

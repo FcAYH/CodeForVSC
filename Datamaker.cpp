@@ -15,7 +15,8 @@ int main()
     // for (int i = 1; i <= n * (n - 1); i++)
     //     printf("%d ", rand() % 500 + 1);
 
-    freopen("data.out", "w", stdout);
+    freopen("TSPinput.txt", "r", stdin);
+    freopen("TSPoutput.txt", "w", stdout);
 
     // for (int i = 0; i <= 11; i++)
     // {
@@ -28,10 +29,27 @@ int main()
     //     }
     // }
 
-    for (int i = 0; i <= 30; i++)
+    int n;
+    scanf("%d", &n);
+    for (int i = 1; i <= n; i++)
     {
-        printf("(n == %d) ||", (1 << i));
+        int flag = 1;
+        for (int j = 1; j <= n; j++)
+        {
+            int temp;
+            scanf("%d", &temp);
+
+            if (!flag)
+                printf("%d ", temp);
+            if (temp == 0)
+                flag = 0;
+        }
     }
+
+    // for (int i = 0; i <= 30; i++)
+    // {
+    //     printf("(n == %d) ||", (1 << i));
+    // }
 
     // for (int i = 100; i <= 10000; i += 100)
     //     printf("%d\n", i * 100 * 1000 / 10000000 + rand() % 5 + i / 30);
