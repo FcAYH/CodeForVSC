@@ -1,54 +1,107 @@
-
 #include <bits/stdc++.h>
 
 using namespace std;
 
 class A
 {
+    int x;
+    int a1;
 
-    int x, y;
+protected:
+    int a2;
 
 public:
-    A(int a = 0, int b = 0) : x(a), y(b) { cout << "A"; }
+    int a3;
+    void Pcs()
+    {
+        printf("%d\n", this->x);
+    }
+    A() {}
+    A(int x) : x(x) {}
 
-    int getx() { return x; }
+    A operator+(A &a)
+    {
+        x += a.x;
+        return *this;
+    }
+    // int operator+(int, int);
 
-    int gety() { return y; }
+    // void operator+(A &, int);
 
-    ~A() { cout << "B"; }
+    // A operator+(A &, A &, int);
+
+    // A A::operator+(int);
+
+    // void operator++(A &);
+
+    // A operator++(A &, int);
+
+    // A A::operator++();
+
+    // A A::operator++(int);
+
+    //......
 };
 
-class B
+class B : protected A
 {
 
-    A a1, a2;
+    int b1;
 
-    const int k;
+protected:
+    int b2;
 
 public:
-    B(int x1, int y1, int x2, int y2) : a1(x1, y1), a2(x2, y2), k(10) { cout << "C"; }
+    int b3;
 
-    B() : k(5) { cout << "D"; }
+    //....
+};
 
-    void outa1() { cout << a1.getx() << a1.gety(); }
+class C
+{
 
-    void outa2() { cout << a2.getx() << a2.gety(); }
+    int c1;
 
-    int getk() { return k; }
+protected:
+    int c2;
 
-    ~B() { cout << "E"; }
+public:
+    int c3;
+
+    //....
+};
+
+class D : public B
+{
+
+    int d1;
+
+protected:
+    int d2;
+
+    C cob1, cob2;
+
+public:
+    int d3;
+
+    void f();
 };
 
 int main()
 {
+    A a(2), b(3), c(0);
+    A e;
+    e(a);
+    // a + b;
+    // c = a + b;
+    // operator+(a, b);
+    // a.
 
-    B b1, b2(1, 2, 3, 4);
+    c = a + b;
+    a.Pcs(), b.Pcs(), c.Pcs();
 
-    b1.outa1();
-    b1.outa2();
-    cout << b1.getk();
+    c = a.operator+(b);
+    a.Pcs(), b.Pcs(), c.Pcs();
 
-    b2.outa1();
-    b2.outa2();
-    cout << b2.getk();
+    return 0;
 }

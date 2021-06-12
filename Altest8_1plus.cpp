@@ -11,7 +11,7 @@ struct HeapNode
     int v;
     int level;
     int bound;
-    int route[N + 1];
+    int *route;
 };
 
 void InsertHeap(HeapNode b[], HeapNode x, int &length);
