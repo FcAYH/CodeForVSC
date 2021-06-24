@@ -12,7 +12,11 @@ namespace Algorithm
             for (int i = 1; i <= 7; i++)
                 temp ^= i;
 
-            Console.WriteLine(temp.ToString());
+            Tuple<int, int> tuple = new Tuple<int, int>(1, 2);
+            Tuple<int, int> tuple2 = new Tuple<int, int>(2, 1);
+
+
+            Console.WriteLine(tuple.Equals(tuple2));
         }
     }
 }

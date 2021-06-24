@@ -5,7 +5,6 @@ d:\MyDocuments\MYCODE\CodeForVSC\Algorithm\bin\Debug\net5.0\Algorithm.runtimecon
 d:\MyDocuments\MYCODE\CodeForVSC\Algorithm\bin\Debug\net5.0\Algorithm.dll
 d:\MyDocuments\MYCODE\CodeForVSC\Algorithm\bin\Debug\net5.0\ref\Algorithm.dll
 d:\MyDocuments\MYCODE\CodeForVSC\Algorithm\bin\Debug\net5.0\Algorithm.pdb
-d:\MyDocuments\MYCODE\CodeForVSC\Algorithm\obj\Debug\net5.0\Algorithm.csprojAssemblyReference.cache
 d:\MyDocuments\MYCODE\CodeForVSC\Algorithm\obj\Debug\net5.0\Algorithm.GeneratedMSBuildEditorConfig.editorconfig
 d:\MyDocuments\MYCODE\CodeForVSC\Algorithm\obj\Debug\net5.0\Algorithm.AssemblyInfoInputs.cache
 d:\MyDocuments\MYCODE\CodeForVSC\Algorithm\obj\Debug\net5.0\Algorithm.AssemblyInfo.cs
@@ -14,3 +13,4 @@ d:\MyDocuments\MYCODE\CodeForVSC\Algorithm\obj\Debug\net5.0\Algorithm.dll
 d:\MyDocuments\MYCODE\CodeForVSC\Algorithm\obj\Debug\net5.0\ref\Algorithm.dll
 d:\MyDocuments\MYCODE\CodeForVSC\Algorithm\obj\Debug\net5.0\Algorithm.pdb
 d:\MyDocuments\MYCODE\CodeForVSC\Algorithm\obj\Debug\net5.0\Algorithm.genruntimeconfig.cache
+D:\MyDocuments\MYCODE\CodeForVSC\Algorithm\obj\Debug\net5.0\Algorithm.csproj.AssemblyReference.cache
