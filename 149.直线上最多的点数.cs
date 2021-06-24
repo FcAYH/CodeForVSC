@@ -1,3 +1,4 @@
+using System;
 /*
  * @lc app=leetcode.cn id=149 lang=csharp
  *
@@ -7,7 +8,7 @@
 // @lc code=start
 public class Solution
 {
-    Dictionary<Tuple<int, int>, bool> dict = new Dictionary<Tuple<int, int>, bool>();
+    Dictionary<Tuple<int, int>, int> dict;
     private int Gcd(int x, int y)
     {
         return (y == 0) ? x : Gcd(y, x % y);
@@ -19,49 +20,37 @@ public class Solution
         if (n <= 2)
             return n;
 
-        int Ans = 0;
-
-        for (int i = 0; i < n - 2; i++)
+        int Ans = 2;
+        for (int i = 0; i < n - 1; i++)
         {
-            for (int j = i + 1; j < n - 1; j++)
+            dict = new Dictionary<Tuple<int, int>, int>();
+
+            for (int j = i + 1; j < n; j++)
             {
-                int x1 = (points[j][0] - points[i][0]);
-                int y1 = (points[j][1] - points[i][1]);
+                int x1 = points[j][0] - points[i][0];
+                int y1 = points[j][1] - points[i][1];
+
+                if (x1 <= 0)
+                {
+                    if (x1 == 0 && y1 < 0)
+                        y1 = -y1;
+                    else if (x1 < 0)
+                    {
+                        x1 = -x1; y1 = -y1;
+                    }
+                }
+
                 int gcd = Gcd(Math.Abs(x1), Math.Abs(y1));
                 x1 /= gcd; y1 /= gcd;
 
                 Tuple<int, int> tuple = new Tuple<int, int>(x1, y1);
-                if (dict.ContainsKey(tuple) == false)
-                {
-                    dict.Add(tuple, true);
-                    dict.Add(new Tuple<int, int>(-x1, -y1), true);
-                    if (x1 == 0 && y1 == 1)
-                        Console.Write("{0} {1} ", i, j);
+                if (!dict.ContainsKey(tuple))
+                    dict.Add(tuple, 2);
+                else
+                    dict[tuple]++;
 
-                    int tempCount = 2;
-                    for (int k = j + 1; k < n; k++)
-                    {
-                        int x2 = (points[k][0] - points[j][0]);
-                        int y2 = (points[k][1] - points[j][1]);
-
-                        if (x1 * y2 == x2 * y1)
-                        {
-                            tempCount++;
-
-                            if (x1 == 0 && y1 == 1)
-                            {
-                                Console.Write("{0} ", k);
-                            }
-                        }
-                        //Console.WriteLine("{0} {1}, {2} {3}", x1, y1, x2, y2);
-                    }
-                    if (x1 == 0 && y1 == 1)
-                        Console.Write("\n");
-
-                    Ans = Math.Max(Ans, tempCount);
-                    // if (Ans == 5)
-                    //     Console.WriteLine("{0} {1}", x1, y1);
-                }
+                foreach (int keyVal in dict.Values)
+                    Ans = Math.Max(Ans, keyVal);
             }
         }
 
@@ -85,4 +74,6 @@ public class Solution
 [[0,-1],[-18,9],[-15,15],[-3,-15],[-5,20],[15,-14],[9,-17],[10,-14],[-7,-11],[14,9],[1,-1],[15,12],[-5,-1],[-17,-5],[15,-2],[-12,11],[19,-18],[8,7],[-5,-3],[-17,-1],[-18,13],[15,-3],[4,18],[-14,-15],[15,8]]
 [[-5,-1],[-17,-5],[15,-2],[-12,11],[19,-18]]
 [[15,-14],[15,12],[15,-2],[15,-3],[15,8]]
+
+[[0,1],[0,0],[0,4],[0,-2],[0,-1],[0,3],[0,-4]]
 */
