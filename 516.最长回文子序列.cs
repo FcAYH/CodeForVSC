@@ -1,3 +1,4 @@
+using System;
 /*
  * @lc app=leetcode.cn id=516 lang=csharp
  *
@@ -17,12 +18,14 @@ public class Solution
 
         for (int j = 1; j < length; j++)
         {
-            for (int i = 0; i < j; i++)
+            for (int i = j - 1; i >= 0; i--)
             {
-                if (s[i] == s[j])
-                    A[i, j] = A[i + 1, j - 1] + 1;
+                A[i, j] = Math.Max(A[i + 1, j], A[i, j - 1]);
 
-                A[i, j] = Math.Max(A[i + 1, j], A[i, j + 1]);
+                //Console.WriteLine("{0}, {1}", i, j);
+
+                if (s[i] == s[j])
+                    A[i, j] = Math.Max(A[i, j], A[i + 1, j - 1] + 2);
             }
         }
 
