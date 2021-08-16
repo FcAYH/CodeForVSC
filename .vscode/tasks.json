@@ -57,14 +57,21 @@
         },
         {
             "label": "build & run file",
-            "type": "process",
-            "command": "g++",
+            "type": "cppbuild",
+            "command": "D:\\MingW_w64\\mingw64\\bin\\g++.exe",
             "args": [
-                "-o",
-                "${fileBasenameNoExtension}",
+                "-g",
                 "${file}",
+                "-o",
+                "${fileDirname}\\${fileBasenameNoExtension}.exe",
                 "-Wl,--stack=268435456",
                 "-fexec-charset=GBK",
+            ],
+            "options": {
+                "cwd": "D:\\MingW_w64\\mingw64\\bin"
+            },
+            "problemMatcher": [
+                "$gcc"
             ],
             "group": {
                 "kind": "build",
