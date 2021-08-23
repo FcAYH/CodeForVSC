@@ -1,6 +1,18 @@
-## 这是大标题
+## 我的Markdown
 
-#### 这次是小标题
+```
+/*
+ * @Author: F_CIL 
+ * @Date: 2021-08-23 10:53:22 
+ * @Last Modified by: F_CIL
+ * @Last Modified time: 2021-08-23 10:53:46
+ */
+```
+[TOC]
+
+### 第一章 标题测试
+
+##### 这次是小标题
 
 - nihao
   - nihao
@@ -8,12 +20,18 @@
       - sd
 
 1. sda
-2. fddf 
+2. fddf  
 
-nihao[^2]
+你好
+
+我好
+
+nihao[^1]
 
 
-[^2]: https://github.com/
+[^1]: https://github.com/
+
+### 第二章 代码测试
 
 ```cpp
 #include <iostream>
@@ -29,16 +47,16 @@ $1 \le n \le 10^4$
 
 $$ \sum_{i = 0}^{10^5} f(n)$$
 
-emoji:punch:	
+:punch:	
 
 - 上标：$30^th$
   
 - 下标：$H_2O$
-- 脚注：Content [^1]
+- 脚注：Content [^2]
 
 - [ ] 这是一个测试用的
 
-[^1]:Hi 这里是一个注脚，会自动拉到最后面排版
+[^2]:Hi 这里是一个注脚，会自动拉到最后面排版
 <table>
     <tr>
         <th rowspan="2">值班人员</th>
@@ -80,6 +98,7 @@ cond(no)->sub->io
         发布: 2d
         验收: 3d
 ```
+### 第三章 画图测试
 
 `sdd `
 
@@ -89,12 +108,14 @@ digraph G
     A -> B
     B -> C
     B -> D
+    D -> E
 }
 ```
-[TOC]
+
+
 
 ```cpp
-
+威威
 ```
 - first
 - second
@@ -121,6 +142,7 @@ wd
 
 > sds
 
+### 第四章 表格测试
 
 **hsdasd**
 
