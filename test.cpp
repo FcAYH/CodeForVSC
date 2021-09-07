@@ -1,135 +1,68 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-typedef struct Link
+struct LNode
 {
     int data;
-    struct Link *next;
-} link;
-
-link *initLink(int n)
+    struct LNode *next;
+};
+struct LNode *create(int n);
+void show(struct LNode *head);
+void DeleteMemory(struct LNode *head);
+int main()
 {
+    struct LNode *head = NULL;
+    int n;
+    printf("输入你想创建的结点个数:");
+    scanf("%d", &n);
+    head = create(n);
+    printf("结果是:\n");
+    show(head);
+    DeleteMemory(head);
+    return 0;
+}
+struct LNode *create(int n)
+{
+    struct LNode *head = NULL;
     int i, x;
-    link *head, *p, *t;
-    head = (link *)malloc(sizeof(link));
-    head->data = 0;
-    t = head;
-    printf("请输入%d个数据\n", n);
-    for (i = 1; i <= n; i++)
+    printf("输入整数:\n");
+    for (i = 0; i < n; i++)
     {
-
-        scanf("%d", &x); //创建首元结点和其他节点
-        p = (link *)malloc(sizeof(link));
+        struct LNode *p = NULL, *pr = head;
+        scanf("%d", &x);
+        p = (struct LNode *)malloc(sizeof(struct LNode));
         p->data = x;
         p->next = NULL;
-        t->next = p; //t指向它的下一个
-        t = t->next; //t变成它的下一个
-    }
-    return head;
-}
-
-link *insertData(link *head, int x)
-{
-    link *pr = head, *p = head, *temp = NULL;
-    p = (link *)malloc(sizeof(link));
-    if (p == NULL)
-    {
-        printf("No enough memory!\n");
-        exit(0);
-    }
-    p->next = NULL;
-    p->data = x;
-    if (head == NULL)
-    {
-        head = p;
-    }
-    else
-    {
-        while (pr->data < x && pr->next != NULL)
+        if (head == NULL)
         {
-            temp = pr;
-            pr = pr->next;
-        }
-        if (pr->data >= x)
-        {
-            if (pr == head)
-            {
-                p->next = head;
-                head = p;
-            }
-            else
-            {
-                pr = temp;
-                p->next = pr->next;
-                pr->next = p;
-            }
+            head = p;
         }
         else
         {
+            while (pr->next != NULL)
+            {
+                pr = pr->next;
+            }
             pr->next = p;
         }
     }
     return head;
 }
-link *Delete(link *head, int y)
+void show(struct LNode *head)
 {
-    link *p = head, *pr = head;
-    while (y != p->data && p->next != NULL)
+    struct LNode *p = head;
+    while (p != NULL)
+    {
+        printf("%d  ", p->data);
+        p = p->next;
+    }
+}
+void DeleteMemory(struct LNode *head)
+{
+    struct LNode *p = head, *pr = NULL;
+    while (p != NULL)
     {
         pr = p;
         p = p->next;
+        free(pr);
     }
-    if (y == p->data)
-    {
-        if (p == head)
-
-        {
-            head = p->next;
-        }
-        else
-        {
-            pr->next = p->next;
-        }
-        free(p);
-    }
-    else
-    {
-        printf("Not found!\n");
-    }
-    return head;
-}
-void display(link *head)
-{
-    link *t = head->next;
-    while (t != NULL)
-    {
-        printf("%d ", t->data);
-        t = t->next;
-    }
-}
-int main(void)
-{
-    int n;
-
-    link *head;
-    printf("请输入个数n:  \n");
-    scanf("%d", &n);
-    head = initLink(n);
-    printf("此时的链表是: \n");
-    display(head);
-    printf("\n");
-
-    int x;
-    printf("Input x:");
-    scanf("%d", &x);
-    head = insertData(head, x);
-    display(head);
-
-    int y;
-    printf("Input y:");
-    scanf("%d", &y);
-    head = Delete(head, y);
-    display(head);
-
-    return 0;
 }
