@@ -49,10 +49,12 @@ book *Delete(book *head, book *tail)
     scanf("%s", n);
 
     book *i = head->next, *p = head;
-    int flag = 1;
+
     int Flag = 0;
     for (; i != NULL; i = i->next)
     {
+        int flag = 1;
+        printf("debug");
         if (i->next == NULL)
         {
             if (strcmp(i->ID, n) == 0)
