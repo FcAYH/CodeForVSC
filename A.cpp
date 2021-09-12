@@ -1,67 +1,132 @@
-#include<cstdio>
-#include<iostream>
-#include<cstring>
-#include<algorithm>
-using namespace std;
-typedef long long ll;
-ll n,p,k;
-ll T;
-inline ll read()
-{
-	ll rt=0ll,in=1ll; char ch=getchar();
-	while(ch<'0'||ch>'9'){if(ch=='-') in=-1ll;ch=getchar();}
-	while(ch>='0'&&ch<='9'){rt=rt*10ll+ch-'0';ch=getchar();}
-	return rt*in;
-}
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 
-ll G,p1,q1;
-inline ll Exgcd(ll x,ll y)
+typedef struct book
 {
-	if(y==0){p1=1,q1=0; return x;}
-	ll Gcd=Exgcd(y,x%y);
-	ll t;
-	t=p1; p1=q1; q1=t-(x/y)*q1;
-	return Gcd;
-}
+    char ID[10];   // 图书编号
+    char name[20]; //书名
+    struct book *next;
+} book;
 
-inline ll Quick_Pow(ll a,ll b,ll Mod)
+book *create(book *tail)
 {
-    ll ret=1ll;
-    while(b>0ll)
+    // book *p = (book *)malloc(sizeof(book));
+
+    while (1)
     {
-        if(b&1ll) ret*=a,ret%=Mod; a=a*a,a%=Mod; b>>=1ll;
+        book *p = (book *)malloc(sizeof(book));
+        scanf("%s %s", p->ID, p->name);
+        //getchar();
+        if (strcmp(p->ID, "0") == 0)
+        {
+            // printf("s ");
+            free(p);
+            break;
+        }
+        else
+        {
+            p->next = NULL;
+            tail->next = p;
+            tail = p;
+        }
     }
-    return ret%Mod;
+    return tail;
 }
-
-ll workk(ll nowwa)
+void Print(book *head)
 {
-	ll qwq=0,poi=1;
-	if(nowwa==1) return n+1;
-	if(nowwa==0) return 1;
-	if(! (nowwa&1)) {qwq=Quick_Pow(n,nowwa,p);nowwa--;}
-	poi+=Quick_Pow(n,(nowwa+1)>>1,p);poi%=p;
-//	outt(nowwa);outt(poi);outt(qwq);hh;
-	return (workk(nowwa>>1)*poi+qwq)%p;
-}
 
-void Solve()
-{
-    T=read();
-    while(T--)
+    book *i = head->next;
+    for (; i != NULL; i = i->next)
     {
-        n=read(),k=read(),p=read();
-        k--; printf("%lld\n",workk(k));
+        printf("%s,%s\n", i->ID, i->name);
     }
+}
+book *Delete(book *head, book *tail)
+{
+    char n[10];
+    printf("请输入要删除图书的编号：\n");
+    scanf("%s", n);
+
+    book *i = head->next, *p = head;
+    int flag = 1;
+    int Flag = 0;
+    for (; i != NULL; i = i->next)
+    {
+        if (i->next == NULL)
+        {
+            if (strcmp(i->ID, n) == 0)
+            {
+                p->next = p->next->next;
+                free(i);
+                flag = 0;
+                i = p;
+                tail = i;
+                Flag = 1;
+            }
+        }
+        if (strcmp(i->ID, n) == 0)
+        {
+            p->next = p->next->next;
+            free(i);
+            flag = 0;
+            i = p;
+            Flag = 1;
+        }
+        if (flag)
+            p = p->next;
+    }
+    if (!Flag)
+        printf("不存在！");
+    printf("删除后的链表：\n");
+    Print(head);
+
+    return tail;
+}
+void Free(book *head)
+{
+    book *p = head->next;
+    for (; p != NULL; p = p->next)
+    {
+        free(head);
+        head = p;
+    }
+    free(head);
 }
 int main()
 {
-    Solve();
-    //system("pause");
+    book *head = (book *)malloc(sizeof(book));
+    head->next = NULL;
+    book *tail = head;
+    printf("输入图书的编号和书名：\n");
+    tail = create(tail);
+    printf("创建的链表：\n");
+    Print(head);
+    while (1)
+    {
+        int n;
+        printf("Input :");
+        scanf("%d", &n);
+        if (n == -1)
+            break;
+        tail = Delete(head, tail);
+    }
+
+    Free(head);
     return 0;
 }
 /*
-2
-3 5 1000 
-4 7 50
+
+
+01 c
+01 a
+02 python
+03 java
+02 a
+01 a
+02 5
+03 a
+01 a
+0 0
+01
 */
