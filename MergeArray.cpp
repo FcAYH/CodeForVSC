@@ -1,54 +1,57 @@
 #include <stdio.h>
-
-int a[20], b[20];
-int ans[20];
+#include <stdlib.h>
 
 int main()
 {
     int n, m;
     scanf("%d%d", &n, &m);
 
-    for (int i = 1; i <= n; i++)
+    int *a = (int *)malloc(sizeof(int) * n);
+    int *b = (int *)malloc(sizeof(int) * m);
+
+    for (int i = 0; i < n; i++)
         scanf("%d", &a[i]);
 
-    for (int i = 1; i <= m; i++)
+    for (int i = 0; i < m; i++)
         scanf("%d", &b[i]);
 
-    int cnt = 1;
-    int i = 1, j = 1;
+    int *c = (int *)malloc(sizeof(int) * (m + n));
 
-    while (i <= n && j <= m)
+    int cnt = 0;
+    int i = 0, j = 0;
+
+    while (i < n && j < m)
     {
         if (a[i] < b[j])
         {
-            ans[cnt] = a[i];
+            c[cnt] = a[i];
             cnt++;
             i++;
         }
         else
         {
-            ans[cnt] = b[j];
+            c[cnt] = b[j];
             cnt++;
             j++;
         }
     }
 
-    while (i <= n)
+    while (i < n)
     {
-        ans[cnt] = a[i];
+        c[cnt] = a[i];
         cnt++;
         i++;
     }
 
-    while (j <= m)
+    while (j < m)
     {
-        ans[cnt] = b[j];
+        c[cnt] = b[j];
         cnt++;
         j++;
     }
 
-    for (int i = 1; i <= n + m; i++)
-        printf("%d ", ans[i]);
+    for (int i = 0; i < n + m; i++)
+        printf("%d ", c[i]);
 
     return 0;
 }
