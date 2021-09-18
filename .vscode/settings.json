@@ -24,10 +24,9 @@
     "javascript.format.placeOpenBraceOnNewLineForFunctions": true,
     "javascript.format.placeOpenBraceOnNewLineForControlBlocks": true,
     //"editor.formatOnType": true,
-    //"editor.formatOnSave": true,
+    "editor.formatOnSave": true,
     "fileheader.Author": "F_CIL",
     "fileheader.LastModifiedBy": "F_CIL",
-    "python.pythonPath": "D:\\Anaconda\\envs\\sense\\python.exe",
     "[markdown]": {
         // 快速补全
         "editor.quickSuggestions": {
