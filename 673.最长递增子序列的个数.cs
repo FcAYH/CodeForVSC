@@ -9,33 +9,47 @@ public class Solution
 {
     public int FindNumberOfLIS(int[] nums)
     {
-        int tempMaxValue = 0;
-        int tempCount = 0;
-        int[] LIS = new int[nums.Length];
+        int maxLength = 1;
+        int[] LISLength = new int[nums.Length];
+        int[] LISCount = new int[nums.Length];
 
-        LIS[0] = 1;
+        LISLength[0] = 1;
+        LISCount[0] = 1;
         for (int i = 1; i < nums.Length; i++)
         {
-            LIS[i] = 1;
+            LISLength[i] = 1;
+            LISCount[i] = 1;
 
             for (int j = 0; j < i; j++)
             {
                 if (nums[j] < nums[i])
-                    LIS[i] = Math.Max(LIS[i], LIS[j] + 1);
-
-                if (LIS[i] > tempMaxValue)
                 {
-                    tempMaxValue = LIS[i];
+                    if (LISLength[i] == LISLength[j] + 1)
+                    {
+                        LISCount[i] += LISCount[j];
+                    }
 
-                    tempCount = 1;
+                    if (LISLength[i] < LISLength[j] + 1)
+                    {
+                        LISLength[i] = LISLength[j] + 1;
+                        LISCount[i] = LISCount[j];
+                    }
                 }
-                else if (LIS[i] == tempMaxValue)
-                    tempCount++;
             }
+
+            maxLength = Math.Max(maxLength, LISLength[i]);
         }
 
-        return tempCount;
+        int count = 0;
+        for (int i = 0; i < nums.Length; i++)
+        {
+            if (LISLength[i] == maxLength)
+                count += LISCount[i];
+        }
+
+        return count;
     }
 }
 // @lc code=end
 
+//[2,5,1,3,6,7,8,53,2,3,62,28,3,5,542,6]
