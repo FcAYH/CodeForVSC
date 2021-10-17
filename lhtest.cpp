@@ -2,29 +2,55 @@
 
 using namespace std;
 
+const int Maxn = 1010;
+
+int tol[Maxn];
+int tArray[Maxn];
+
+inline int cmp(int x, int y)
+{
+    return x < y;
+}
+
+void Solve()
+{
+    int m, n;
+    scanf("%d%d", &m, &n);
+    for (int i = 1; i <= m; i++)
+    {
+        scanf("%d", &tol[i]);
+        tArray[i] = tol[i];
+    }
+
+    sort(tArray + 1, tArray + 1 + m, cmp);
+
+    int ans = 0;
+    int solved = 0, nowp = 1;
+    while (true)
+    {
+        while (tol[nowp] != tArray[solved + 1])
+        {
+            nowp++;
+            if (nowp == m + 1)
+                nowp = 1;
+        }
+        if (tol[nowp] == tArray[solved + 1])
+        {
+            solved++;
+            if (nowp == n)
+            {
+                ans = solved;
+                break;
+            }
+        }
+    }
+
+    printf("%d", ans);
+}
+
 int main()
 {
-    freopen("out.txt", "r", stdin);
+    Solve();
 
-    int cnt[5] = {0, 0, 0, 0, 0};
-    //srand(time(0));
-    for (int i = 1; i <= 80; i++)
-    {
-        int x;
-        scanf("%x,", &x);
-        //printf("%d ", x);
-        if (x >= 90)
-            cnt[0]++;
-        else if (x >= 80)
-            cnt[1]++;
-        else if (x >= 70)
-            cnt[2]++;
-        else if (x >= 60)
-            cnt[3]++;
-        else
-            cnt[4]++;
-        //printf("0x%x, ", rand() % 100 + 1);
-    }
-    printf("%d %d %d %d %d \n", cnt[0], cnt[1], cnt[2], cnt[3], cnt[4]);
+    return 0;
 }
-//6 13 11 9 41
