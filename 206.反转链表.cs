@@ -18,27 +18,26 @@
  */
 public class Solution
 {
-    // Iteration
+    private ListNode RecursionReverseList(ListNode nowNode, ListNode prevNode)
+    {
+        if (nowNode == null)
+            return prevNode;
+
+        ListNode temp = nowNode.next;
+        nowNode.next = prevNode;
+
+        return RecursionReverseList(temp, nowNode);
+    }
+
+    // recursion
     public ListNode ReverseList(ListNode head)
     {
-        if (head == null)
-            return null;
-        if (head.next == null)
+        if (head == null || head.next == null)
             return head;
 
-        ListNode prev = head;
-        head = head.next;
-        prev.next = null;
-
-        while (head != null)
-        {
-            ListNode temp = head;
-            head = head.next;
-            temp.next = prev;
-            prev = temp;
-        }
-
-        return prev;
+        ListNode temp = head.next;
+        head.next = null;
+        return RecursionReverseList(temp, head);
     }
 }
 // @lc code=end
