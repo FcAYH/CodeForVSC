@@ -8,66 +8,27 @@ const int Maxn = 1010;
 
 int main()
 {
-    // freopen("Aldata.out", "w", stdout);
+    srand(time(0));
 
-    // int n = 11;
-    // printf("%d\n", n);
-    // for (int i = 1; i <= n * (n - 1); i++)
-    //     printf("%d ", rand() % 500 + 1);
+    freopen("data3.in", "w", stdout);
 
-    freopen("TSPinput.txt", "r", stdin);
-    freopen("TSPoutput.txt", "w", stdout);
+    int length = 999;
 
-    // for (int i = 0; i <= 11; i++)
-    // {
-    //     for (int j = 0; j <= 11; j++)
-    //     {
-    //         if (i == 11 - j)
-    //             printf("[%d, %d, %d],\n", i, j, 150);
-    //         else
-    //             printf("[%d, %d, %d],\n", i, j, 0);
-    //     }
-    // }
-
-    int n;
-    scanf("%d", &n);
-    for (int i = 1; i <= n; i++)
+    for (int i = 1; i <= length - 1; i += 2)
     {
-        int flag = 1;
-        for (int j = 1; j <= n; j++)
-        {
-            int temp;
-            scanf("%d", &temp);
+        int x = rand() % 10;
+        printf("%d", x);
+        int ope = rand() % 2;
 
-            if (!flag)
-                printf("%d ", temp);
-            if (temp == 0)
-                flag = 0;
+        if (i != 997)
+        {
+            if (ope == 0)
+                printf("+");
+            else
+                printf("-");
         }
     }
-
-    // for (int i = 0; i <= 30; i++)
-    // {
-    //     printf("(n == %d) ||", (1 << i));
-    // }
-
-    // for (int i = 100; i <= 10000; i += 100)
-    //     printf("%d\n", i * 100 * 1000 / 10000000 + rand() % 5 + i / 30);
-    // freopen("1.in", "w", stdout);
-
-    // srand(time(0));
-
-    // int n = 1000, m = 1000;
-    // printf("%d %d\n", n, m);
-
-    // int cnt = 1;
-    // for (int i = 1; i <= 1000; i++)
-    // {
-    //     for (int j = 1; j <= 1000; j++)
-    //         printf("%d ", cnt++);
-    //     puts("");
-    // }
-    // printf("%d\n", cnt - 1001);
+    printf("=");
 
     return 0;
 }
