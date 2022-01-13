@@ -18,16 +18,42 @@
  */
 public class Solution
 {
-    private Dictionary<ListNode, bool> dict = new();
+    //private Dictionary<ListNode, bool> dict = new();
     public bool HasCycle(ListNode head)
     {
-        ListNode temp = head;
-        while (temp != null)
+        // ListNode temp = head;
+        // while (temp != null)
+        // {
+        //     if (dict.ContainsKey(temp)) { return true; }
+        //     else { dict.Add(temp, true); }
+        //     temp = temp.next;
+        // }
+        // return false;
+        if (head == null || head.next == null)
         {
-            if (dict.ContainsKey(temp)) { return true; }
-            else { dict.Add(temp, true); }
-            temp = temp.next;
+            return false;
         }
+
+        ListNode quickNode = head.next;
+        ListNode slowNode = head;
+        bool timer = false;
+
+        while (quickNode != null)
+        {
+            if (quickNode == slowNode)
+            {
+                return true;
+            }
+
+            quickNode = quickNode.next;
+            if (timer)
+            {
+                slowNode = slowNode.next;
+            }
+
+            timer ^= true;
+        }
+
         return false;
     }
 }
