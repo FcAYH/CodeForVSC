@@ -17,7 +17,8 @@
         "thread": "cpp",
         "array": "cpp",
         "string": "cpp",
-        "string_view": "cpp"
+        "string_view": "cpp",
+        "complex": "cpp"
     },
     "files.insertFinalNewline": true,
     "code-runner.saveFileBeforeRun": true,
