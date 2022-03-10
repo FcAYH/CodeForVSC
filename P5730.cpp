@@ -1,118 +1,3 @@
-// #include <bits/stdc++.h>
-
-// using namespace std;
-
-// const int MAX_HEIGHT = 5;
-// const int MAX_WIDTH = 500;
-
-// char ans[MAX_HEIGHT][MAX_WIDTH];
-
-// char table[10][5][5] = {
-//     "XXX.",
-//     "X.X.",
-//     "X.X.",
-//     "X.X.",
-//     "XXX.",
-
-//     "..X.",
-//     "..X.",
-//     "..X.",
-//     "..X.",
-//     "..X.",
-
-//     "XXX.",
-//     "..X.",
-//     "XXX.",
-//     "X...",
-//     "XXX.",
-
-//     "XXX.",
-//     "..X.",
-//     "XXX.",
-//     "..X.",
-//     "XXX.",
-
-//     "X.X.",
-//     "X.X.",
-//     "XXX.",
-//     "..X.",
-//     "..X.",
-
-//     "XXX.",
-//     "X...",
-//     "XXX.",
-//     "..X.",
-//     "XXX.",
-
-//     "XXX.",
-//     "X...",
-//     "XXX.",
-//     "X.X.",
-//     "XXX.",
-
-//     "XXX.",
-//     "..X.",
-//     "..X.",
-//     "..X.",
-//     "..X.",
-
-//     "XXX.",
-//     "X.X.",
-//     "XXX.",
-//     "X.X.",
-//     "XXX.",
-
-//     "XXX.",
-//     "X.X.",
-//     "XXX.",
-//     "..X.",
-//     "XXX."};
-
-// void Solve()
-// {
-//     int n;
-//     scanf("%d", &n);
-
-//     char *str = new char[n + 1];
-//     scanf("%s", str);
-
-//     for (int i = 0; i < n; i++)
-//     {
-//         for (int j = 0; j < 5; j++)
-//         {
-//             for (int k = 0; k < 4; k++)
-//             {
-//                 ans[j][4 * i + k] = table[str[i] - '0'][j][k];
-//             }
-//         }
-//     }
-
-//     for (int i = 0; i < 5; i++)
-//     {
-//         for (int j = 0; j < n * 4 - 1; j++)
-//         {
-//             printf("%c", ans[i][j]);
-//         }
-//         puts("");
-//     }
-// }
-
-// int main()
-// {
-//     Solve();
-
-//     return 0;
-// }
-
-// /*
-// XXX...X.XXX.XXX.X.X.XXX.XXX.XXX.XXX.XXX
-// X.X...X...X...X.X.X.X...X.....X.X.X.X.X
-// X.X...X.XXX.XXX.XXX.XXX.XXX...X.XXX.XXX
-// X.X...X.X.....X...X...X.X.X...X.X.X...X
-// XXX...X.XXX.XXX...X.XXX.XXX...X.XXX.XXX
-// */
-// */
-
 #include <stdio.h>
 #include <string.h>
 char p[105];
@@ -123,7 +8,8 @@ int main()
     int n;
     scanf("%d", &n);
     scanf("%s", p);
-
+    // for (int i = 1; i <= n; i++)
+    //   scanf("%c", &p[i]);
     for (int i = 0; i < n; i++)
     {
         switch (p[i]) //绘图
@@ -141,7 +27,7 @@ int main()
                         // printf("%c", 'X');
                         ans[i][j][k] = 'X';
                 }
-                if (i != (n - 1))
+                if (p[i] != p[n - 1])
                     ans[i][j][4] = '.';
             }
             break;
@@ -157,7 +43,7 @@ int main()
                     else
                         ans[i][j][k] = '.';
                 }
-                if (i != (n - 1))
+                if (p[i] != p[n - 1])
                     ans[i][j][4] = '.';
             }
             break;
@@ -174,7 +60,7 @@ int main()
                         // printf("%c", 'X');
                         ans[i][j][k] = 'X';
                 }
-                if (i != (n - 1))
+                if (p[i] != p[n - 1])
                     ans[i][j][4] = '.';
             }
             break;
@@ -191,7 +77,7 @@ int main()
                         // printf("%c", 'X');
                         ans[i][j][k] = 'X';
                 }
-                if (i != (n - 1))
+                if (p[i] != p[n - 1])
                     ans[i][j][4] = '.';
             }
             break;
@@ -208,7 +94,7 @@ int main()
                         // printf("%c", 'X');
                         ans[i][j][k] = 'X';
                 }
-                if (i != (n - 1))
+                if (p[i] != p[n - 1])
                     ans[i][j][4] = '.';
             }
             break;
@@ -225,7 +111,7 @@ int main()
                         // printf("%c", 'X');
                         ans[i][j][k] = 'X';
                 }
-                if (i != (n - 1))
+                if (p[i] != p[n - 1])
                     ans[i][j][4] = '.';
             }
             break;
@@ -242,7 +128,7 @@ int main()
                         // printf("%c", 'X');
                         ans[i][j][k] = 'X';
                 }
-                if (i != (n - 1))
+                if (p[i] != p[n - 1])
                     ans[i][j][4] = '.';
             }
             break;
@@ -259,7 +145,7 @@ int main()
                         // printf("%c", 'X');
                         ans[i][j][k] = 'X';
                 }
-                if (i != (n - 1))
+                if (p[i] != p[n - 1])
                     ans[i][j][4] = '.';
             }
             break;
@@ -276,7 +162,7 @@ int main()
                         // printf("%c", 'X');
                         ans[i][j][k] = 'X';
                 }
-                if (i != (n - 1))
+                if (p[i] != p[n - 1])
                     ans[i][j][4] = '.';
             }
             break;
@@ -293,7 +179,7 @@ int main()
                         // printf("%c", 'X');
                         ans[i][j][k] = 'X';
                 }
-                if (i != (n - 1))
+                if (p[i] != p[n - 1])
                     ans[i][j][4] = '.';
             }
             break;
@@ -301,69 +187,6 @@ int main()
         default:
             break;
         }
-
-        //转二维
-        // char table[10][5][5] = {
-        //     "XXX.",
-        //     "X.X.",
-        //     "X.X.",
-        //     "X.X.",
-        //     "XXX.",
-        //     "..X.",
-        //     "..X.",
-        //     "..X.",
-        //     "..X.",
-        //     "..X.",
-        //     "XXX.",
-        //     "..X.",
-        //     "XXX.",
-        //     "X...",
-        //     "XXX.",
-        //     "XXX.",
-        //     "..X.",
-        //     "XXX.",
-        //     "..X.",
-        //     "XXX.",
-        //     "X.X.",
-        //     "X.X.",
-        //     "XXX.",
-        //     "..X.",
-        //     "..X.",
-        //     "XXX.",
-        //     "X...",
-        //     "XXX.",
-        //     "..X.",
-        //     "XXX.",
-        //     "XXX.",
-        //     "X...",
-        //     "XXX.",
-        //     "X.X.",
-        //     "XXX.",
-        //     "XXX.",
-        //     "..X.",
-        //     "..X.",
-        //     "..X.",
-        //     "..X.",
-        //     "XXX.",
-        //     "X.X.",
-        //     "XXX.",
-        //     "X.X.",
-        //     "XXX.",
-        //     "XXX.",
-        //     "X.X.",
-        //     "XXX.",
-        //     "..X.",
-        //     "XXX."};
-    }
-    for (int i = 0; i < n; i++)
-    {
-        for (int j = 1; j <= 5; j++)
-        {
-            for (int k = 1; k <= 4; k++)
-                printf("%c", ans[i][j][k]);
-            puts("");
-        }
-        puts("");
     }
 
     for (int j = 1; j <= 5; j++)
@@ -380,10 +203,39 @@ int main()
         for (int k = 1; k <= 4 * n - 1; k++)
         {
             printf("%c", print[j][k]);
-            // printf("%d ", 0 + j);
         }
         printf("\n");
     }
-
     return 0;
 }
+
+/* for (int j = 1; j <= 5; j++)
+   {
+       for (int i = 1; i <= n; i++)
+       {
+           for (int k = 1; k <= 4; k++)
+           {
+               printf("%c", ans[i][j][k]);
+           }
+       }
+       printf("\n");
+   }*/
+// print[j][4 * i + k] = table[p[i] - '0'][j][k];
+/*  {
+      if (k == 1)
+          print[j][4 * i + 1] = 'a' + i; // ans[i][j][k];
+      if (k == 2)
+
+      if (k == 3)
+          print[j][4 * i + 3] = ans[i][j][k];
+      if (k == 4)
+          print[j][4 * i + 4] =5 ans[i][j][k];
+  }*/
+// }
+// else
+// {
+//     for (int k = 1; k <= 3; k++)
+//     {
+//         print[j][4 * i + k] = table[i][j][k];
+//     }
+// }
