@@ -1,62 +1,39 @@
-#include <iostream>
 #include <cstdio>
-#include <cstring>
 #include <algorithm>
 using namespace std;
-const int MAXN = 200010;
-int n, m, root[MAXN], cut, a[MAXN], s[MAXN];
-struct data
-{
-    int lc, rc, ans;
-} tree[MAXN * 20];
-void add(int &now, int last, int l, int r, int x)
-{
-    now = ++cut;
-    tree[now].ans = tree[last].ans + 1;
+typedef long long ll;
 
-    if (l == r)
-        return;
-    tree[now].lc = tree[last].lc;
-    tree[now].rc = tree[last].rc;
-    int mid = (l + r) >> 1;
-    if (x <= mid)
-        add(tree[now].lc, tree[last].lc, l, mid, x);
-    else
-        add(tree[now].rc, tree[last].rc, mid + 1, r, x);
-}
-int query(int L, int R, int l, int r, int x)
+const unsigned __int128 Mod = 998244353;
+
+void print(unsigned __int128 n)
 {
-    if (l == r)
-        return tree[L].ans - tree[R].ans;
-    int mid = (l + r) >> 1;
-    if (x <= mid)
-        return query(tree[L].lc, tree[R].lc, l, mid, x);
-    else
-        return query(tree[L].rc, tree[R].rc, mid + 1, r, x);
+    if (n < 0)
+    {
+        putchar('-');
+        n *= -1;
+    }
+    if (n > 9)
+        print(n / 10);
+    putchar(n % 10 + '0');
 }
+
 int main()
 {
-    int x, y, z, p = 0;
-    scanf("%d", &n);
-    scanf("%d", &m);
-
-    for (int i = 1; i <= n; ++i)
+    ll in, ik;
+    scanf("%lld", &in);
+    ik = in;
+    unsigned __int128 n = in, k = ik;
+    unsigned __int128 ans = in * ik;
+    // printf("%lf", ans);
+    for (unsigned __int128 l = 1, r; l <= n; l = r + 1)
     {
-        scanf("%d", &a[i]);
-        p = max(p, a[i]);
+        if (k / l != 0)
+            r = min(k / (k / l), n);
+        else
+            r = n;
+        ans -= (k / l) * (r - l + 1) * (l + r) / 2;
     }
-    for (int i = 1; i <= n; ++i)
-        add(root[i], root[i - 1], 1, p, a[i]);
-
-    while (m--)
-    {
-        scanf("%d%d%d", &x, &y, &z);
-        if (z > p)
-        {
-            printf("0\n");
-            continue;
-        }
-        printf("%d\n", query(root[y], root[x - 1], 1, p, z));
-    }
+    ans %= Mod;
+    print(ans);
     return 0;
 }
