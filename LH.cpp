@@ -1,39 +1,90 @@
-#include <cstdio>
-#include <algorithm>
+#include <bits/stdc++.h>
+
 using namespace std;
-typedef long long ll;
 
-const unsigned __int128 Mod = 998244353;
+const int MaxNodeCount = 64;
 
-void print(unsigned __int128 n)
+map<int, int> Tree;
+int ans = 0;
+
+void Dfs(int node, int sum)
 {
-    if (n < 0)
+    sum += Tree[node];
+
+    int currentDepth = node / 10;
+    int leftChild = currentDepth * 10 + node % 10;
+    int rightChild = leftChild + 1;
+    bool hasLeftChild = Tree.find(leftChild) == Tree.end();
+    bool hasRightChild = Tree.find(rightChild) == Tree.end();
+    if (!hasLeftChild && !hasRightChild)
     {
-        putchar('-');
-        n *= -1;
+        // leaf
+        ans += sum;
     }
-    if (n > 9)
-        print(n / 10);
-    putchar(n % 10 + '0');
+    else
+    {
+        if (hasLeftChild)
+            Dfs(leftChild, sum);
+        if (hasRightChild)
+            Dfs(rightChild, sum);
+    }
+}
+
+void Solve()
+{
+    int n;
+    int number[MaxNodeCount];
+
+    scanf("%d", &n);
+
+    for (int i = 1; i <= n; i++)
+    {
+        scanf("%d", &number[i]);
+        Tree[number[i] / 10] = number[i] % 10;
+    }
+
+    Dfs(number[0] / 10, 0);
 }
 
 int main()
 {
-    ll in, ik;
-    scanf("%lld", &in);
-    ik = in;
-    unsigned __int128 n = in, k = ik;
-    unsigned __int128 ans = in * ik;
-    // printf("%lf", ans);
-    for (unsigned __int128 l = 1, r; l <= n; l = r + 1)
-    {
-        if (k / l != 0)
-            r = min(k / (k / l), n);
-        else
-            r = n;
-        ans -= (k / l) * (r - l + 1) * (l + r) / 2;
-    }
-    ans %= Mod;
-    print(ans);
+    Solve();
+
     return 0;
+}
+
+const int BUFFER_SIZE = 100;
+char *recordString;
+char *strtok(char *str, char *splits)
+{
+    if (str != NULL)
+    {
+        recordString = str;
+    }
+
+    if (*recordString == '\0')
+        return NULL;
+
+    int length = strlen(splits);
+
+    int index = 0;
+    char *returnChars = new char[BUFFER_SIZE];
+
+    while (*recordString != '\0')
+    {
+        returnChars[index++] = *recordString;
+
+        for (int i = 0; i < length; i++)
+        {
+            if (*recordString == splits[i])
+            {
+                returnChars[index] = '\0';
+                break;
+            }
+        }
+
+        recordString++;
+    }
+
+    return returnChars;
 }
