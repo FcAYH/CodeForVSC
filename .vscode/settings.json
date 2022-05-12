@@ -20,7 +20,8 @@
         "string_view": "cpp",
         "complex": "cpp",
         "mutex": "cpp",
-        "shared_mutex": "cpp"
+        "shared_mutex": "cpp",
+        "iterator": "cpp"
     },
     "files.insertFinalNewline": true,
     "code-runner.saveFileBeforeRun": true,
