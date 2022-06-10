@@ -1,90 +1,66 @@
 #include <bits/stdc++.h>
-
 using namespace std;
-
-const int MaxNodeCount = 64;
-
-map<int, int> Tree;
-int ans = 0;
-
-void Dfs(int node, int sum)
+typedef long long ll;
+const ll Mod = 1000000007;
+const int Maxn = 1000010;
+inline int read()
 {
-    sum += Tree[node];
+    int fl = 1, rt = 0;
+    char ch = getchar();
+    while (ch < '0' || ch > '9')
+    {
+        if (ch == '-')
+            fl = -1;
+        ch = getchar();
+    }
+    while (ch >= '0' && ch <= '9')
+    {
+        rt = rt * 10 + ch - '0';
+        ch = getchar();
+    }
+    return fl * rt;
+}
+ll p, q;
+ll Exgcd(ll px, ll py)
+{
+    if (py == 0)
+    {
+        p = 1ll, q = 0ll;
+        return px;
+    }
+    ll Gcd = Exgcd(py, px % py), t;
+    t = p;
+    p = q;
+    q = t - (px / py) * q;
+    return Gcd;
+}
+inline ll Quick_Pow(ll a, ll b)
+{
+    ll ret = 1;
+    while (b > 0)
+    {
+        if (b & 1)
+            ret *= a;
+        a *= a, b >>= 1;
+        a %= Mod, ret %= Mod;
+    }
+    return ret;
+}
 
-    int currentDepth = node / 10;
-    int leftChild = currentDepth * 10 + node % 10;
-    int rightChild = leftChild + 1;
-    bool hasLeftChild = Tree.find(leftChild) == Tree.end();
-    bool hasRightChild = Tree.find(rightChild) == Tree.end();
-    if (!hasLeftChild && !hasRightChild)
-    {
-        // leaf
-        ans += sum;
-    }
-    else
-    {
-        if (hasLeftChild)
-            Dfs(leftChild, sum);
-        if (hasRightChild)
-            Dfs(rightChild, sum);
-    }
+void Print(string s)
+{
+    cout << s;
 }
 
 void Solve()
 {
-    int n;
-    int number[MaxNodeCount];
+    int a = 2, b = 3;
 
-    scanf("%d", &n);
-
-    for (int i = 1; i <= n; i++)
-    {
-        scanf("%d", &number[i]);
-        Tree[number[i] / 10] = number[i] % 10;
-    }
-
-    Dfs(number[0] / 10, 0);
+    a == b ? Print("ads") : Print("aaaa");
 }
-
 int main()
 {
     Solve();
-
+    system("pause");
     return 0;
-}
-
-const int BUFFER_SIZE = 100;
-char *recordString;
-char *strtok(char *str, char *splits)
-{
-    if (str != NULL)
-    {
-        recordString = str;
-    }
-
-    if (*recordString == '\0')
-        return NULL;
-
-    int length = strlen(splits);
-
-    int index = 0;
-    char *returnChars = new char[BUFFER_SIZE];
-
-    while (*recordString != '\0')
-    {
-        returnChars[index++] = *recordString;
-
-        for (int i = 0; i < length; i++)
-        {
-            if (*recordString == splits[i])
-            {
-                returnChars[index] = '\0';
-                break;
-            }
-        }
-
-        recordString++;
-    }
-
-    return returnChars;
 }

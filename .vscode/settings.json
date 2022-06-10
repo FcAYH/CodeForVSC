@@ -21,7 +21,10 @@
         "complex": "cpp",
         "mutex": "cpp",
         "shared_mutex": "cpp",
-        "iterator": "cpp"
+        "iterator": "cpp",
+        "initializer_list": "cpp",
+        "regex": "cpp",
+        "utility": "cpp"
     },
     "files.insertFinalNewline": true,
     "code-runner.saveFileBeforeRun": true,
