@@ -1,65 +1,37 @@
-/*
-为什么没有k的范围？
-*/
 #include <bits/stdc++.h>
 
 using namespace std;
 
-const int MaxN = 20010;
-const int MaxK = 100;
-
-int dp[MaxN][MaxK];
-int n, k;
-int tree[MaxN];
-
-void dfs(int poi)
+class Test
 {
-    printf("%d", poi);
-    if ((poi << 1) <= n && tree[poi << 1] != -1)
+public:
+    Test()
     {
-        dfs(poi << 1);
+        cout << "ctor" << endl;
     }
 
-    if ((poi << 1 | 1) <= n && tree[poi << 1 | 1] != -1)
+    ~Test()
     {
-        dfs(poi << 1 | 1);
+        cout << "free" << endl;
     }
 
-    // poi 不开采
-    for (int i = 0; i <= k; i++)
+    void fun1()
     {
-        for (int j = 0; j <= k; j++)
-        {
-            dp[poi][0] = max(dp[poi][0], dp[poi << 1][i] + dp[poi << 1 | 1][j]);
-        }
+        delete this;
+        cout << "hello world" << endl;
     }
-
-    // poi 开采
-    for (int i = 1; i <= k; i++)
-    {
-        for (int j = 0; j < i; j++)
-        {
-            int rLink = i - j - 1;
-            dp[poi][i] = max(dp[poi][i], dp[poi << 1][j] + dp[poi << 1 | 1][rLink] + tree[poi]);
-        }
-    }
-}
+};
 
 void Solve()
 {
-    scanf("%d%d", &k, &n);
+    Test *p = new Test();
+    delete p;
+    p->fun1();
+    delete p;
 
-    for (int i = 1; i <= n; i++)
-        scanf("%d", &tree[i]);
-
-    dfs(0);
-
-    int ans = 0;
-    for (int i = 0; i <= k; i++)
-    {
-        ans = max(ans, dp[0][i]);
-    }
-    printf("%d", ans);
+    Test *q = nullptr;
+    q->fun1();
+    delete q;
 }
 
 int main()
