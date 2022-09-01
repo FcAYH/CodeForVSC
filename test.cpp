@@ -27,7 +27,7 @@ public:
 
     void fun1()
     {
-        // delete this;
+        delete this;
         cout << "hello world" << endl;
     }
 
