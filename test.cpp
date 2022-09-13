@@ -2,6 +2,10 @@
 
 using namespace std;
 
+int f(int a, char *b)
+{
+}
+
 void Solve()
 {
     int n;
@@ -17,6 +21,22 @@ void Solve()
 
 int main()
 {
+    // X 表达式必须是可以修改的左值
+    // int *p(int, char);
+    // p = &f;
+
+    // X 如此定义p，不符合语法
+    // int (*)p();
+    // p = &f;
+
+    // X 表达式必须是可以修改的左值
+    // int *p();
+    // p = f;
+
+    // √
+    int (*p)(int, char *);
+    p = f;
+
     Solve();
 
     return 0;
