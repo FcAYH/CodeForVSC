@@ -1,0 +1,145 @@
+const ll Mod=1000000007;
+const int Maxline=101,Maxrow=101;
+struct Matrix
+{
+    double M[Maxline][Maxrow];
+    int line=0,row=0;
+    void Uniting() // Only squares are supported.
+    {
+        for(int i=1;i<=this->line;i++) this->M[i][i]=1;
+    }
+    void Read()
+    {
+        scanf("%d%d",&this->line,&this->row); 
+        for(int i=1;i<=this->line;i++)
+            for(int j=1;j<=this->row;j++) scanf("%lf",&this->M[i][j]);
+    }
+    void Print()
+    {
+        for(int i=1;i<=this->line;i++)
+        {
+            for(int j=1;j<=this->row;j++) printf("%lf ",this->M[i][j]);
+            puts("");
+        }
+    }
+    Matrix operator*(const Matrix &b) const //this->row must equals b.line
+    {
+        Matrix t;
+        t.line=this->line,t.row=this->row;
+        for(int i=1;i<=this->line;i++)
+        {
+            for(int j=1;j<=this->row;j++)
+            {
+                t.M[i][j]=0;
+                for(int k=1;k<=this->line;k++) t.M[i][j]=(double)(((ll)(t.M[i][j]+this->M[i][k]*b.M[k][j]))%Mod);
+            }
+        }
+        return t;
+    }
+    Matrix operator-(const Matrix &b) const //this->line must equals b.line, and the same to row
+    {
+        Matrix t;
+        t.line=this->line,t.row=this->row;
+        for(int i=1;i<=this->line;i++)
+            for(int j=1;j<=this->row;j++) t.M[i][j]=this->M[i][j]-b.M[i][j];
+        return t;         
+    }
+    Matrix operator+(const Matrix &b) const //this->line must equals b.line, and the same to row
+    {
+        Matrix t;
+        t.line=this->line,t.row=this->row;
+        for(int i=1;i<=this->line;i++)
+            for(int j=1;j<=this->row;j++) t.M[i][j]=this->M[i][j]+b.M[i][j];
+        return t; 
+    }
+    Matrix operator*(const double &b) const 
+    {
+        Matrix t;
+        t.line=this->line,t.row=this->row;
+        for(int i=1;i<=this->line;i++)
+            for(int j=1;j<=this->row;j++) t.M[i][j]=this->M[i][j]*b;
+        return t;
+    }
+    Matrix operator/(const double &b) const 
+    {
+        Matrix t;
+        t.line=this->line,t.row=this->row;
+        for(int i=1;i<=this->line;i++)
+            for(int j=1;j<=this->row;j++) t.M[i][j]=this->M[i][j]/b;
+        return t;
+    }
+    Matrix operator^(const ll &k) const // Only squares are supported.
+    {
+        Matrix ret,a;
+        ret.line=this->line,ret.row=this->row;
+        a.line=this->line,a.row=this->row;
+        for(int i=1;i<=this->line;i++)
+            for(int j=1;j<=this->row;j++) a.M[i][j]=this->M[i][j]; 
+        ret.Uniting();
+        ll b=k;
+        while(b>0)
+        {
+            if(b&1) ret=ret*a; a=a*a; b>>=1;
+        }
+        return ret;
+    }
+    inline double Det() // The determinant Only squares are supported.
+    {
+        if(this->line==1) return this->M[1][1];
+        int sum=0,flag=1;
+        for(int i=1;i<=this->row;i++)
+        {
+            Matrix t;
+            t.line=this->line-1,t.row=this->row-1;
+            for(int j=2;j<=this->line;j++)
+            {
+                for(int k=1;k<i;k++) t.M[j-1][k]=this->M[j][k];
+                for(int k=i+1;k<=this->row;k++) t.M[j-1][k-1]=this->M[j][k];
+            }
+            sum+=flag*this->M[1][i]*t.Det(); flag=-flag;
+        }
+        return sum;
+    }
+    
+    inline double Cofactor(int x,int y) //cofactor, Only squares are supported.
+    {
+        Matrix t;
+        t.line=this->line-1,t.row=this->row-1;
+        for(int i=1;i<x;i++)
+            for(int j=1;j<y;j++) t.M[i][j]=this->M[i][j];
+        for(int i=x+1;i<=this->line;i++)
+            for(int j=1;j<y;j++) t.M[i-1][j]=this->M[i][j];
+        for(int i=1;i<=x;i++)
+            for(int j=y+1;j<=this->row;j++) t.M[i][j-1]=this->M[i][j];
+        for(int i=x+1;i<=this->line;i++)
+            for(int j=y+1;j<=this->row;j++) t.M[i-1][j-1]=this->M[i][j];
+        return t.Det();
+    }
+    inline Matrix Transpos() //Only squares are supported.
+    {
+        Matrix t;
+        t.line=this->line,t.row=this->row;
+        for(int i=1;i<=this->line;i++)
+            for(int j=1;j<=this->row;j++) t.M[i][j]=this->M[j][i];
+        return t;
+    }
+    inline Matrix Accompanying() //Only squares are supported.
+    {
+        Matrix t;
+        t.line=this->line,t.row=this->row;
+        for(int i=1;i<=this->line;i++)
+        {
+            for(int j=1;j<=this->row;j++)
+            {   
+                int flag=0;
+                flag=(i+j)%2?-1:1;
+                t.M[i][j]=(double)flag*this->Cofactor(i,j);
+            }
+        }
+        return t.Transpos();
+    }
+    inline Matrix Inv() //The Determinant must not equals zero, Only squares are supported.
+    {
+        return this->Accompanying()/this->Det();
+    }
+};

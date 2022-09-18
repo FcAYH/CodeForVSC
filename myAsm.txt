@@ -1,0 +1,248 @@
+IO1 EQU 10H                                         ; 8253   +2COUNT1  +4COUNT2 +6MODE
+IO3 EQU 30H                                         ; 8255A  +2B  +4C  +6MODE
+
+DATA SEGMENT                                        ; 数据段
+    RECORD DB 16 DUP(?)                             ; 用来存储按键
+   
+    SEGDATA DB 3FH,06H,5BH,4FH,66H,6DH,7DH,07H
+            DB 7FH,6FH,77H,7CH,39H,5EH,79H,71H      ; 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F
+DATA ENDS
+
+CODE	SEGMENT                                     ; 代码段
+    ASSUME CS:CODE,DS:DATA
+START:
+MAIN PROC FAR
+    MOV AX,DATA                                     ; 将DS的值设置为数据段基地址	
+    MOV DS,AX
+INI:   
+    MOV AL,10000001B                                ; 81H
+    MOV DX,IO3+6                                    ; 取8255A_MODE地址
+    OUT DX,AL                                       ; 写入8255A工作字
+    MOV DX,IO3+4                                    ; 取8255A_C地址
+    MOV AL,00	                                    ; 
+    OUT DX,AL                                       ; 向8255_C输出0
+NOKEY:
+    IN AL,DX
+    AND AL,0FH
+    CMP AL,0FH
+    JZ NOKEY                                        ; 等待按键按下
+    CALL DELAY10
+    IN AL,DX
+    MOV BL,0
+    MOV CX,4
+LP1:	                                            
+    SHR AL,1
+    JNC LP2
+    INC BL
+    LOOP LP1
+LP2:	
+    MOV AL,10001000B
+    MOV DX,IO3+6
+    OUT DX,AL
+    MOV DX,IO3+4
+    MOV AL,00		
+    OUT DX,AL
+    IN AL,DX
+    AND AL,0F0H
+    CMP AL,0F0H
+    JZ INI		
+    MOV BH,0
+    MOV CX,4
+LP3:	
+    SHL AL,1
+    JNC LP4
+    INC BH
+    LOOP LP3
+LP4:    
+    MOV AX,4
+    MUL BH
+    ADD AL,BL
+    CMP AL,09H
+    JZ  REC                                         ; 记录
+    CMP AL,08H
+    JZ  PLY                                         ; 播放
+    CMP AL,01H
+    JZ  DO                                         ; 1
+    CMP AL,02H
+    JZ  RA                                         ; 2
+    CMP AL,03H
+    JZ  MI                                          ; 3
+    CMP AL,04H
+    JZ  FA                                          ; 4
+    CMP AL,05H
+    JZ  SO                                         ; 5
+    CMP AL,06H
+    JZ  LA                                          ; 6
+    CMP AL,07H
+    JZ XI                                           ; 7
+    JMP J1
+PLY:    
+    MOV DX,IO3+2
+    OUT DX,AL
+    MOV BX,OFFSET SEGDATA
+    XLAT
+    MOV DX,IO3
+    OUT DX,AL
+    MOV AL,00010110B
+    MOV DX,IO1+6
+    OUT DX,AL
+    MOV CX,83
+    LEA BX,RECORD
+CHANGGE:
+    MOV AL,[BX]
+    CMP AL,'$'
+    JZ J1
+    MOV DX,IO1
+    OUT DX,AL
+    INC BX
+    CALL DELAY100
+    LOOP CHANGGE
+REC:    
+    MOV DX,IO3+2
+    OUT DX,AL
+    MOV BX,OFFSET SEGDATA
+    XLAT
+    MOV DX,IO3
+    OUT DX,AL
+    MOV AL,00010110B
+    MOV DX,IO1+6
+    OUT DX,AL
+    MOV CX,15
+    LEA BX,RECORD
+CHANGGE1:
+    MOV AL,[BX]
+    CMP AL,'$'
+    JZ J1
+    MOV DX,IO1
+    OUT DX,AL
+    INC BX
+    CALL DELAY100
+    LOOP CHANGGE1
+                                                    ; 以下为7个音符的发声代码，其实重复度很高，有很大的优化空间
+DO:                                                ; 1  
+    MOV DX,IO3+2                                    ; 取8255_B地址   
+    OUT DX,AL
+    MOV BX,OFFSET SEGDATA                           ; 取频率表
+    XLAT                                            ; AL <- (BX + AL)
+    MOV DX,IO3                                      ; 取8255_A地址
+    OUT DX,AL
+    MOV CX,0
+    MOV AL,00010110B
+    MOV DX,IO1+6
+    OUT DX,AL
+    MOV AL,192
+    MOV DX,IO1
+    OUT DX,AL
+    JMP J1
+RA:                                                ; 2
+    MOV DX,IO3+2
+    OUT DX,AL
+    MOV BX,OFFSET SEGDATA
+    XLAT
+    MOV DX,IO3
+    OUT DX,AL
+    MOV CX,0
+    MOV AL,00010110B
+    MOV DX,IO1+6
+    OUT DX,AL
+    MOV AL,170
+    MOV DX,IO1
+    OUT DX,AL
+    JMP J1
+MI:                                                 ; 3
+    MOV DX,IO3+2
+    OUT DX,AL
+    MOV BX,OFFSET SEGDATA
+    XLAT
+    MOV DX,IO3
+    OUT DX,AL
+    MOV CX,0
+    MOV AL,00010110B
+    MOV DX,IO1+6
+    OUT DX,AL
+    MOV AL,151
+    MOV DX,IO1
+    OUT DX,AL
+    JMP J1
+
+FA:                                                 ; 4
+    MOV DX,IO3+2
+    OUT DX,AL
+    MOV BX,OFFSET SEGDATA
+    XLAT
+    MOV DX,IO3
+    OUT DX,AL
+    MOV CX,0
+    MOV AL,00010110B
+    MOV DX,IO1+6
+    OUT DX,AL
+    MOV AL,143
+    MOV DX,IO1
+    OUT DX,AL
+    JMP J1
+SO:                                                ; 5
+    MOV DX,IO3+2
+    OUT DX,AL
+    MOV BX,OFFSET SEGDATA
+    XLAT
+    MOV DX,IO3
+    OUT DX,AL
+    MOV CX,0
+    MOV AL,00010110B
+    MOV DX,IO1+6
+    OUT DX,AL
+    MOV AL,127
+    MOV DX,IO1
+    OUT DX,AL
+    JMP J1
+LA:                                                 ; 6
+    MOV DX,IO3+2
+    OUT DX,AL
+    MOV BX,OFFSET SEGDATA
+    XLAT
+    MOV DX,IO3
+    OUT DX,AL
+    MOV CX,0
+    MOV AL,00010110B
+    MOV DX,IO1+6
+    OUT DX,AL
+    MOV AL,113
+    MOV DX,IO1
+    OUT DX,AL
+    JMP J1
+XI:                                                 ; 7
+    MOV DX,IO3+2
+    OUT DX,AL
+    MOV BX,OFFSET SEGDATA
+    XLAT
+    MOV DX,IO3
+    OUT DX,AL
+    MOV AL,00010110B
+    MOV DX,IO1+6
+    OUT DX,AL
+    MOV AL,101
+    MOV DX,IO1
+    OUT DX,AL
+    MOV CX,0
+J1:	
+    LOOP J1
+    JMP INI
+    RET
+ MAIN ENDP
+
+DELAY10 PROC                                        ; 10ms延时
+    MOV CX,882
+    LOOP $
+    RET
+DELAY10 ENDP 
+
+DELAY100 PROC                                       ; 100ms延时
+    MOV CX,50000
+    LOOP $
+    RET
+DELAY100 ENDP
+ 
+CODE	ENDS	
+	END START
+
+
