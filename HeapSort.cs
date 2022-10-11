@@ -1,26 +1,47 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 public class Entry
 {
+    public const int NUMBER_COUNT = 10000000;
+    public const int REPEAT_COUNT = 100;
     public static void Main()
     {
-        int numberCount = 20;
-        int[] number = new int[numberCount];
+        int[] number = new int[NUMBER_COUNT];
 
         Random rand = new Random(DateTime.Now.Millisecond);
-        for (int i = 0; i < numberCount; i++)
-        {
-            number[i] = rand.Next() % 1000;
-        }
 
-        number.SortAsHeap();
+        Stopwatch stopwatch = new Stopwatch();
+        stopwatch.Start();
 
-        foreach (var element in number)
+        for (int j = 0; j < REPEAT_COUNT; j++)
         {
-            Console.Write(element + " ");
+            for (int i = 0; i < NUMBER_COUNT; i++)
+            {
+                number[i] = rand.Next() % 1000;
+            }
+
+            number.SortAsHeap();
         }
-        Console.WriteLine("");
+        stopwatch.Stop();
+
+        Console.WriteLine("HeapSort: " + stopwatch.ElapsedMilliseconds);
+
+        stopwatch.Restart();
+
+        for (int j = 0; j < REPEAT_COUNT; j++)
+        {
+            for (int i = 0; i < NUMBER_COUNT; i++)
+            {
+                number[i] = rand.Next() % 1000;
+            }
+
+            Array.Sort(number);
+        }
+        stopwatch.Stop();
+
+        Console.WriteLine("QuickSort: " + stopwatch.ElapsedMilliseconds);
     }
 }
 
