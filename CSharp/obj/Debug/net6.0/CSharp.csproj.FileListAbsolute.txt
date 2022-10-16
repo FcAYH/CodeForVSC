@@ -1,0 +1,15 @@
+C:\Users\F_CIL\ProjectFC\CodeForVSC\CSharp\bin\Debug\net6.0\CSharp.exe
+C:\Users\F_CIL\ProjectFC\CodeForVSC\CSharp\bin\Debug\net6.0\CSharp.deps.json
+C:\Users\F_CIL\ProjectFC\CodeForVSC\CSharp\bin\Debug\net6.0\CSharp.runtimeconfig.json
+C:\Users\F_CIL\ProjectFC\CodeForVSC\CSharp\bin\Debug\net6.0\CSharp.dll
+C:\Users\F_CIL\ProjectFC\CodeForVSC\CSharp\bin\Debug\net6.0\CSharp.pdb
+C:\Users\F_CIL\ProjectFC\CodeForVSC\CSharp\obj\Debug\net6.0\CSharp.csproj.AssemblyReference.cache
+C:\Users\F_CIL\ProjectFC\CodeForVSC\CSharp\obj\Debug\net6.0\CSharp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\F_CIL\ProjectFC\CodeForVSC\CSharp\obj\Debug\net6.0\CSharp.AssemblyInfoInputs.cache
+C:\Users\F_CIL\ProjectFC\CodeForVSC\CSharp\obj\Debug\net6.0\CSharp.AssemblyInfo.cs
+C:\Users\F_CIL\ProjectFC\CodeForVSC\CSharp\obj\Debug\net6.0\CSharp.csproj.CoreCompileInputs.cache
+C:\Users\F_CIL\ProjectFC\CodeForVSC\CSharp\obj\Debug\net6.0\CSharp.dll
+C:\Users\F_CIL\ProjectFC\CodeForVSC\CSharp\obj\Debug\net6.0\refint\CSharp.dll
+C:\Users\F_CIL\ProjectFC\CodeForVSC\CSharp\obj\Debug\net6.0\CSharp.pdb
+C:\Users\F_CIL\ProjectFC\CodeForVSC\CSharp\obj\Debug\net6.0\CSharp.genruntimeconfig.cache
+C:\Users\F_CIL\ProjectFC\CodeForVSC\CSharp\obj\Debug\net6.0\ref\CSharp.dll
