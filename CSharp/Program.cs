@@ -20,11 +20,11 @@ public class Entry
 
 
         string input = Console.ReadLine();
-        int[] result = ac.Query(input);
+        bool[] result = ac.Query(input);
 
         for (int i = 0; i < result.Length; i++)
         {
-            Console.WriteLine(keyWords[i] + " occurs " + result[i] + "times");
+            Console.WriteLine(keyWords[i] + " occurs? ---> " + result[i]);
         }
     }
 }
@@ -36,4 +36,12 @@ acd
 edf
 sde
 acasdedf
+
+5
+a
+bb
+aa
+abaa
+abaaa
+abaaabaa
 */

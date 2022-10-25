@@ -27,7 +27,7 @@ public class ACAutomaton
     public ACAutomaton(string[] keyWords)
     {
         KeyWords = keyWords;
-        InitializeTrie();
+        InitializeTrie(); // 初始化_trie
     }
 
     private void InitializeTrie()
@@ -82,25 +82,26 @@ public class ACAutomaton
         }
     }
 
-    public int[] Query(string input)
+    public bool[] Query(string input)
     {
-        int[] queryResult = new int[KeyWords.Length];
+        bool[] queryResult = new bool[KeyWords.Length];
 
         TreeNode current = _trie;
         foreach (char character in input)
         {
-            if (current.Children.ContainsKey(character))
-            {
-                current = current.Children[character];
-            }
-            else
+            while (current != null && !current.Children.ContainsKey(character))
             {
                 current = current.FailPointer;
             }
-            if (current == null) current = _trie;
 
-            if (current.WordEnd != 0)
-                queryResult[current.WordEnd - 1]++;
+            if (current == null) current = _trie;
+            if (current.Children.ContainsKey(character))
+            {
+                current = current.Children[character];
+
+                if (current.WordEnd != 0)
+                    queryResult[current.WordEnd - 1] = true;
+            }
         }
 
         return queryResult;
