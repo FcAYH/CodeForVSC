@@ -6,6 +6,9 @@ using namespace std;
 const int N = 20;
 char s1[N];
 
+int n = 10;
+int a[n];
+
 int main()
 {
     printf("%c", (char)66);
