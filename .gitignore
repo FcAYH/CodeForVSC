@@ -3,3 +3,6 @@
 *.in
 *.out
 *.txt
+obj/
+CSharp/obj/
+CSharp/bin/
