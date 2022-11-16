@@ -14,6 +14,8 @@ public class Graph
         _vertexCount = n;
         _edgeCount = m;
         _edges = new List<(int to, int val)>[_vertexCount];
+        for (int i = 0; i < _vertexCount; i++)
+            _edges[i] = new List<(int to, int val)>();
     }
 
     public void AddEdge(int start, int end, int value)
