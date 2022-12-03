@@ -1,6 +1,6 @@
-#pragma once
-#include<cstdio>
-#include<iostream>
+sdafa
+            saf fsas 
+            af aeam>
 #include<cstring>
 using namespace std;
 

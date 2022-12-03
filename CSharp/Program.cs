@@ -1,28 +1,58 @@
 ﻿using Solutions;
 using System;
 using System.Collections.Generic;
+using System.Text;
 
 public class Entry
 {
+    public struct Vector
+    {
+        public float a, b, c;
+        public Vector(float a, float b, float c)
+        {
+            this.a = a;
+            this.b = b;
+            this.c = c;
+        }
+
+        public override string ToString()
+        {
+            return $"({a}, {b}, {c})";
+        }
+    }
+    public static void AddInt(List<int> intList)
+    {
+        for (int i = 0; i < 10; i++)
+            intList.Add(i);
+    }
+
+    public static void ModifyList(List<Vector> list1, List<Vector> list2)
+    {
+        List<Vector> temp = new List<Vector>();
+        list2.Clear();
+
+        for (int i = 0; i < list1.Count; i++)
+        {
+            var vec = list1[i];
+            temp.Add(vec);
+            list2.Add(vec);
+        }
+
+        list1.Clear();
+        list1.AddRange(temp);
+    }
+
     public static void Main()
     {
-        string[] input = Console.ReadLine().Split(" ");
-        (int n, int m, int start) = (int.Parse(input[0]), int.Parse(input[1]), int.Parse(input[2]));
+        List<Vector> list = new List<Vector>();
+        List<Vector> secList = new List<Vector>();
 
-        Graph graph = new Graph(n, m);
-        for (int i = 0; i < m; i++)
-        {
-            input = Console.ReadLine().Split(" ");
-            (int u, int v, int w) = (int.Parse(input[0]), int.Parse(input[1]), int.Parse(input[2]));
-            graph.AddEdge(u, v, w);
-        }
+        list.Add(new Vector(1, 2, 3));
+        list.Add(new Vector(2.3f, 2.13f, 5.3f));
 
-        int[] dis = Dijkstra.Solve(graph, start);
+        ModifyList(list, secList);
 
-        foreach (var val in dis)
-        {
-            Console.WriteLine(val + " ");
-        }
+        Console.WriteLine($"list Count: {list.Count}, sec Count: {secList.Count}");
     }
 }
 

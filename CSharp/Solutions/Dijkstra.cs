@@ -71,3 +71,24 @@ public class Dijkstra
 
     private Dijkstra() { }
 }
+/*
+Main:
+
+string[] input = Console.ReadLine().Split(" ");
+(int n, int m, int start) = (int.Parse(input[0]), int.Parse(input[1]), int.Parse(input[2]));
+
+Graph graph = new Graph(n, m);
+for (int i = 0; i < m; i++)
+{
+    input = Console.ReadLine().Split(" ");
+    (int u, int v, int w) = (int.Parse(input[0]), int.Parse(input[1]), int.Parse(input[2]));
+    graph.AddEdge(u, v, w);
+}
+
+int[] dis = Dijkstra.Solve(graph, start);
+
+foreach (var val in dis)
+{
+    Console.WriteLine(val + " ");
+}
+*/
