@@ -48,3 +48,22 @@ public class MaxWidthRamp
         return ans;
     }
 }
+
+/*
+Main:
+
+int n = int.Parse(Console.ReadLine());
+
+int[] nums = new int[n];
+string[] numStr = Console.ReadLine().Split(" ", StringSplitOptions.RemoveEmptyEntries);
+
+for (int i = 0; i < n; i++)
+{
+    nums[i] = int.Parse(numStr[i]);
+}
+
+MaxWidthRamp solution = new MaxWidthRamp();
+int ans = solution.Solve(nums);
+
+Console.WriteLine(ans);
+*/

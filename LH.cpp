@@ -1,75 +1,101 @@
 #include <bits/stdc++.h>
 
-using namespace std;
-
-struct Data
+struct TreeNode
 {
-    int s, t, rank;
-    string relation;
-    vector<string> paths;
+    int val;
+    TreeNode *lChild;
+    TreeNode *rChild;
 
-    string ToString()
+public:
+    TreeNode(int val) : val(val)
     {
-        string display;
-        display = to_string(s) + " " + to_string(t) + " " + to_string(rank) + "\n";
-        display += relation + "\n";
-        for (int i = 0; i < paths.size(); i++)
-        {
-            display += paths[i] + "\n";
-        }
-
-        return display;
+        lChild = nullptr;
+        rChild = nullptr;
     }
 };
 
-vector<Data> dataVec;
+void dfs(TreeNode *t)
+{
+    if (t->lChild != nullptr)
+        dfs(t->lChild);
+
+    if (t->rChild != nullptr)
+        dfs(t->rChild);
+    printf("%d ", t->val);
+}
+/*
+    10
+   /  \
+  2    5
+/  \
+7  1
+
+
+*/
 
 int main()
 {
-    fstream readFile1;
-    fstream readFile2;
-    readFile1.open("LH_ReadFile_1.txt", ios::in);
-    readFile2.open("LH_ReadFile_2.txt", ios::in);
+    TreeNode *root = new TreeNode(10);
+    root->lChild = new TreeNode(2);
+    root->rChild = new TreeNode(5);
+    root->lChild->lChild = new TreeNode(7);
+    root->lChild->rChild = new TreeNode(1);
 
-    int s, t, rank;
-    string relation;
-    while (!readFile1.eof())
+    // dfs(root);
+
+    std::stack<TreeNode *> st;
+    std::stack<int> layer;
+    st.push(root);
+    layer.push(0);
+    while (!st.empty())
     {
-        readFile1 >> s >> t >> rank >> relation;
-        Data data;
-        data.s = s;
-        data.t = t;
-        data.rank = rank;
-        data.relation = relation;
+        TreeNode *t = st.top();
+        int la = layer.top();
 
-        string path;
-        while (!readFile2.eof() && path.length() <= 1)
+    startPoint:
+
+        if (la == 1)
+            goto leftPoint;
+        if (la == 2)
+            goto endPoint;
+
+        // printf("%d ", t->val); // 前序遍历输出
+
+        if (t->lChild != nullptr)
         {
-            getline(readFile2, path);
+            st.push(t->lChild);
+
+            layer.pop();
+            layer.push(1);
+            layer.push(0);
+
+            t = st.top();
+            la = layer.top();
+            goto startPoint;
+        }
+    leftPoint:
+
+        // printf("%d ", t->val); // 中序遍历输出
+        if (la == 2)
+            goto endPoint;
+
+        if (t->rChild != nullptr)
+        {
+            st.push(t->rChild);
+
+            layer.pop();
+            layer.push(2);
+            layer.push(0);
+
+            t = st.top();
+            la = layer.top();
+            goto startPoint;
         }
 
-        while (!readFile2.eof())
-        {
-            if (path.length() > 2)
-                data.paths.push_back(path);
-            else
-                break;
-            getline(readFile2, path);
-        }
+    endPoint:
+        // printf("%d ", t->val); // 后序遍历输出
 
-        dataVec.push_back(data);
+        st.pop();
+        layer.pop();
     }
-
-    readFile1.close();
-    readFile2.close();
-
-    fstream writeFile;
-    writeFile.open("LH_WriteFile_1.txt", ios::out);
-
-    for (int i = 0; i < dataVec.size(); i++)
-    {
-        writeFile << dataVec[i].ToString() << endl;
-    }
-
-    return 0;
 }
