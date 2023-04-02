@@ -7,7 +7,7 @@ public class MaxWidthRamp
         public int Value;
         public int Index;
 
-        public int CompareTo(object? obj)
+        public int CompareTo(object obj)
         {
             if (Value > ((Number)obj).Value)
                 return 1;

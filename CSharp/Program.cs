@@ -2,13 +2,23 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
+using System.Diagnostics;
 
 public class Entry
 {
+    private static void Fun(int[] arr)
+    {
+        arr[0] = 10;
+        arr[1] = 20;
+    }
+
     public static void Main()
     {
-        uint uu = (1u << 31);
-        Console.WriteLine(uu);
+        int[] arr = new int[2];
+
+        Fun(arr);
+        Console.WriteLine(arr[0] + " " + arr[1]);
     }
 }
 

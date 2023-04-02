@@ -23,7 +23,7 @@ public class Graph
         _edges[start].Add((end, value));
     }
 
-    public List<(int to, int val)>? GetEdges(int start)
+    public List<(int to, int val)> GetEdges(int start)
     {
         if (start < 0 || start >= _vertexCount)
             return null;
@@ -39,7 +39,7 @@ public class Dijkstra
 
     private const int INF = 0x3f3f3f3f;
 
-    public static int[]? Solve(Graph g, int start)
+    public static int[] Solve(Graph g, int start)
     {
         _distance = new int[g.VertexCount];
         _visit = new bool[g.VertexCount];

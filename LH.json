@@ -1,0 +1,14 @@
+{
+    "Id": 1,
+    "DataDict": {
+        "2": {
+            "Id": 2,
+            "Name": "Data2",
+            "Next": {
+                "Id": 1,
+                "Name": "Data1",
+                "Next": null
+            }
+        }
+    }
+}

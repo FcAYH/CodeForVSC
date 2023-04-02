@@ -1,57 +1,42 @@
-#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
 
-#define MaxN 10000000
-
-double nums[MaxN];
-
-void Solve()
+typedef struct TreeNode
 {
-    srand(time(0));
+    int val;
+    TreeNode *lChild;
+    TreeNode *rChild;
+    int count;
+} TreeNode;
 
-    for (int i = 0; i < MaxN; i++)
+// main => flag
+void FindTopK(TreeNode *t, int k)
+{
+    if (t->lChild && t->lChild->count >= k) // top k -> l
     {
-        nums[i] = rand() % 1000;
+        FindTopK(t->lChild, k);
     }
-
-    /*
-        我需要一段代码，实现以下功能：
-        1. nums[i] = sqrt(nums[i]);
-        2. 统计总共的耗时
-    */
-
-    // 以下代码是我写的，但是我不知道为什么，总是会报错
-    // 请帮我修改一下，谢谢
-    // 请在这里写下你的代码
-    clock_t start, end;
-    start = clock();
-    for (int j = 0; j < 100; j++)
+    else // self + r
     {
-        for (int i = 0; i < MaxN; i++)
+        int nextK = k;
+        if (t->lChild)
+            nextK -= t->lChild->count;
+
+        if (nextK == 1)
+            printf("%d", t->val);
+
+        else if (t->rChild)
         {
-            sqrtl(nums[i]);
+            FindTopK(t->rChild, nextK - 1);
         }
     }
-    end = clock();
-    printf("Time: %lf\n", (double)(end - start));
-
-    start = clock();
-    for (int j = 0; j < 100; j++)
-    {
-        for (int i = 0; i < MaxN; i++)
-        {
-            sqrt(nums[i]);
-        }
-    }
-    end = clock();
-    printf("Time: %lf\n", (double)(end - start));
 }
 
 int main()
 {
-    Solve();
+    TreeNode *root = (TreeNode *)malloc(sizeof(TreeNode));
 
-    return 0;
+    dfs(root, 1);
+
+    free(root);
 }
