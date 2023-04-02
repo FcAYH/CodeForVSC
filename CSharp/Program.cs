@@ -7,10 +7,19 @@ using System.Diagnostics;
 
 public class Entry
 {
+    private static readonly int[] Arr = { 2, 3, 4 };
+    private static void Another(int[] arr)
+    {
+        Arr[1] = 4;
+        arr[0] = 20;
+        arr[1] = 22;
+    }
     private static void Fun(int[] arr)
     {
         arr[0] = 10;
         arr[1] = 20;
+
+        Another(arr);
     }
 
     public static void Main()
@@ -18,7 +27,7 @@ public class Entry
         int[] arr = new int[2];
 
         Fun(arr);
-        Console.WriteLine(arr[0] + " " + arr[1]);
+        Console.WriteLine(arr[0] + " " + arr[1] + " " + Arr[1]);
     }
 }
 
